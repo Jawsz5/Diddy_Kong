@@ -4,7 +4,7 @@ Out recreation of Diddy Kong
 
 Ex: 
 
-![alt text]("Diddy_Kong_ex.png")
+![alt text]("Diddy_Kong_ex")
 
 Rules:
 The main objective of the game is to get our character (Diddy Kong) to the treasure without getting killed.
