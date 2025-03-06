@@ -7,3 +7,4 @@ class Main:
         self.clock = pygame.time.Clock()
     def new_game(self):
 
+
