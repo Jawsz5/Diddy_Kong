@@ -2,7 +2,7 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Python 3.8 (Money-Printer)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.13 (unit-05-lesson-8-introduction-to-pygame-MouryaVem-master)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
