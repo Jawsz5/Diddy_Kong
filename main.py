@@ -6,5 +6,5 @@ class Main:
         self.screen = pygame.display.set_mode(SCREENSIZE)
         self.clock = pygame.time.Clock()
     def new_game(self):
-
+        
 
