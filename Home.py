@@ -7,6 +7,7 @@ class Home():
     def __init__(self, screen):
         self.screen = pygame.display.set_mode((SCREENW, SCREENH))
         self.clock = pygame.time.Clock()
+        pass
 
     def play_button(self):
         pass
