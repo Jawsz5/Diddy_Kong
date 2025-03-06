@@ -1,48 +1,32 @@
 import pygame
 
+SCREENW, SCREENH = 800, 600
+
 #https://www.geeksforgeeks.org/how-to-create-buttons-in-a-game-using-pygame/
-class Button(pygame.sprite.Sprite):
-    def __init__(self, screen):
-        pygame.sprite.Sprite.__init__(self)
+class Button:
+    def __init__(self, screen, text, x, y, width=200, height=50, color=(200, 200, 0), hover_color=(0, 200, 0)):
         self.screen = screen
-
-        # Colors
-        self.color_text = (0, 200, 0)  # Hover color
-        self.color_back = (200, 200, 0)  # Default color
-
-        # Font
-        smallfont = pygame.font.SysFont('Corbel', 35)
-        self.text = smallfont.render('Quit', True, (255, 255, 255))
-
-        # Screen dimensions
-        self.width = screen.get_width()
-        self.height = screen.get_height()
-
-        # Button dimensions
-        self.button_width = 140
-        self.button_height = 40
-
-        # Button position (centered)
-        self.x = (self.width - self.button_width) // 2
-        self.y = (self.height - self.button_height) // 2
+        self.text = text
+        self.x = x #Top left corner of the button
+        self.y = y #Top left corner of the button
+        self.width = width
+        self.height = height
+        self.color = color
+        self.hover_color = hover_color
+        self.font = pygame.font.SysFont('Corbel', 35)
+        self.rendered_text = self.font.render(self.text, True, (255, 255, 255))
 
     def draw(self):
-        mouse = pygame.mouse.get_pos()
-
-        # Check if the mouse is hovering over the button
-        if self.x <= mouse[0] <= self.x + self.button_width and self.y <= mouse[1] <= self.y + self.button_height:
-            pygame.draw.rect(self.screen, self.color_text, [self.x, self.y, self.button_width, self.button_height])
+        mouse = pygame.mouse.get_pos() # Gets mouse cursor position -> (x,y)
+        if (self.x <= mouse[0] <= self.x + self.width and self.y <= mouse[1] <= self.y + self.height):
+            rect_color = self.hover_color #If mouse is on the button, change the color
         else:
-            pygame.draw.rect(self.screen, self.color_back, [self.x, self.y, self.button_width, self.button_height])
+            rect_color = self.color
 
-        # Draw text onto the button
-        text_x = self.x + (self.button_width - self.text.get_width()) // 2
-        text_y = self.y + (self.button_height - self.text.get_height()) // 2
-        self.screen.blit(self.text, (text_x, text_y))
 
-    def handle_event(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            mouse = pygame.mouse.get_pos()
-            if self.x <= mouse[0] <= self.x + self.button_width and self.y <= mouse[1] <= self.y + self.button_height:
-                pygame.quit()
-                quit()
+        pygame.draw.rect(self.screen, rect_color, [self.x, self.y, self.width, self.height])
+        text_x = self.x + (self.width - self.rendered_text.get_width()) // 2
+        text_y = self.y + (self.height - self.rendered_text.get_height()) // 2
+        self.screen.blit(self.rendered_text, (text_x, text_y)) #Draws the text on the button
+
+
