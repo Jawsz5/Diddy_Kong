@@ -39,7 +39,7 @@ class Main:
                         running = False
 
                 for button in self.buttons:
-                    button.draw()
+                    button.draw() #Draws the buttons
 
                 if pygame.mouse.get_pressed()[0] and self.buttons[0].rect.collidepoint(pygame.mouse.get_pos()):
                     pass  # Handle play button action here
