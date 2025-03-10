@@ -1,5 +1,6 @@
 import pygame
 from Button import Button
+import Rules
 
 SCREENW = 800
 SCREENH = 600
@@ -16,8 +17,10 @@ class Home:
             Button(self.screen, "Settings", SCREENW // 2 - 100, 400, 200, 50)
         ]
 
-    def show_rules(self):
-       pass
+    def show_rules(self, screen):
+        #rules = Rules.Rules(screen)
+        #rules.run()
+        pass
 
     def show_settings(self):
         pass
@@ -35,8 +38,7 @@ class Home:
 
             # https://stackoverflow.com/questions/10990137/pygame-mouse-clicking-detection
             if pygame.mouse.get_pressed()[0] and self.buttons[1].rect.collidepoint(pygame.mouse.get_pos()):
-                self.show_rules()
-
+                self.show_rules(self.screen)
 
             pygame.display.update()
             self.clock.tick(30)
