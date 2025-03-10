@@ -1,7 +1,7 @@
 import pygame
 import sys
-from Rules import Rules
 from Button import Button
+
 
 
 class Main:
@@ -9,6 +9,7 @@ class Main:
         pygame.init()
         self.res = (720, 720)
         self.SCREENW = self.res[0]
+        self.SCREENH = self.res[1]  # Add the height of the screen
         self.screen = pygame.display.set_mode(self.res)
         pygame.display.set_caption("Game Menu")
 
@@ -23,39 +24,49 @@ class Main:
             Button(self.screen, "Settings", self.SCREENW // 2 - 100, 400, 200, 50)
         ]
 
+        self.screen_state = "home"  # Initially on the home screen
+
     def run(self):
         running = True
         while running:
+            self.screen.fill((0, 0, 0))  # Clear screen before drawing
+            if self.screen_state == "home":
+                self.screen.blit(self.image, (0, 0))  # Draw home screen background
 
-            self.screen.blit(self.image, (0, 0))
+                # Handle button clicks
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        running = False
 
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
+                for button in self.buttons:
+                    button.draw()
 
-            # Draw buttons
-            for button in self.buttons:
-                button.draw()
+                if pygame.mouse.get_pressed()[0] and self.buttons[0].rect.collidepoint(pygame.mouse.get_pos()):
+                    pass  # Handle play button action here
+                if pygame.mouse.get_pressed()[0] and self.buttons[1].rect.collidepoint(pygame.mouse.get_pos()):
+                    self.screen_state = "rules"  # Switch to rules screen
+                if pygame.mouse.get_pressed()[0] and self.buttons[2].rect.collidepoint(pygame.mouse.get_pos()):
+                    self.screen_state = "settings"  # Switch to settings screen
 
-            if pygame.mouse.get_pressed()[0] and self.buttons[0].rect.collidepoint(pygame.mouse.get_pos()):
-                pass
-            if pygame.mouse.get_pressed()[0] and self.buttons[1].rect.collidepoint(pygame.mouse.get_pos()):
-                back = Button(self.screen, "Back", self.SCREENW // 2 - 300, 100, 200, 50)
-                self.screen.fill("White")
+            elif self.screen_state == "rules" or self.screen_state == "settings":
+                # Move the back button to the bottom
+                back = Button(self.screen, "Back", self.SCREENW // 2 - 100, self.SCREENH - 200, 200, 50)
+                self.screen.blit(self.image, (0, 0))
                 back.draw()
-                pygame.display.update()
-                while not (pygame.mouse.get_pressed()[0] and back.rect.collidepoint(pygame.mouse.get_pos())):
-                    back.draw()
-                    pygame.display.update()
 
-            if pygame.mouse.get_pressed()[0] and self.buttons[2].rect.collidepoint(pygame.mouse.get_pos()):
-                self.screen.fill("White")
+                # Handle back button click
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        running = False
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        if back.rect.collidepoint(pygame.mouse.get_pos()):
+                            self.screen_state = "home"  # Go back to home screen
+
 
             pygame.display.update()
 
         pygame.quit()
         sys.exit()
-
 
 if __name__ == "__main__":
     Main().run()
