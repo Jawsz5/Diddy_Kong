@@ -15,6 +15,7 @@ class Button:
         self.hover_color = hover_color
         self.font = pygame.font.SysFont('Corbel', 35)
         self.rendered_text = self.font.render(self.text, True, (255, 255, 255))
+        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
 
     def draw(self):
         mouse = pygame.mouse.get_pos() # Gets mouse cursor position -> (x,y)

@@ -33,6 +33,11 @@ class Home:
             for button in self.buttons:
                 button.draw()
 
+            # https://stackoverflow.com/questions/10990137/pygame-mouse-clicking-detection
+            if pygame.mouse.get_pressed()[0] and self.buttons[1].rect.collidepoint(pygame.mouse.get_pos()):
+                self.show_rules()
+
+
             pygame.display.update()
             self.clock.tick(30)
 
