@@ -2,8 +2,6 @@ import pygame
 import sys
 from Button import Button
 
-
-
 class Main:
     def __init__(self):
         pygame.init()
@@ -19,12 +17,17 @@ class Main:
 
         # Initialize buttons here
         self.buttons = [
-            Button(self.screen, "Play", self.SCREENW // 2 - 100, 200, 200, 50),
-            Button(self.screen, "Rules", self.SCREENW // 2 - 100, 300, 200, 50),
-            Button(self.screen, "Settings", self.SCREENW // 2 - 100, 400, 200, 50)
+            Button(self.screen, "Play", self.SCREENW // 2 - 100, 250, 200, 50),
+            Button(self.screen, "Rules", self.SCREENW // 2 - 100, 350, 200, 50),
+            Button(self.screen, "Settings", self.SCREENW // 2 - 100, 450, 200, 50)
         ]
 
         self.screen_state = "home"  # Initially on the home screen
+
+        # Title Font (Bubble-style)
+        self.title_font = pygame.font.Font("Fonts/Bubblegum.ttf", 45)  # Ensure you have a bubble-style font
+        self.title_text = self.title_font.render("Welcome to Diddy Kong Island!", True, (255, 69, 0))  # Bold bubble font
+        self.title_rect = self.title_text.get_rect(center=(self.SCREENW // 2, 150))
 
     def run(self):
         running = True
@@ -32,6 +35,9 @@ class Main:
             self.screen.fill((0, 0, 0))  # Clear screen before drawing
             if self.screen_state == "home":
                 self.screen.blit(self.image, (0, 0))  # Draw home screen background
+
+                # Draw title
+                self.screen.blit(self.title_text, self.title_rect)
 
                 # Handle button clicks
                 for event in pygame.event.get():
@@ -62,7 +68,6 @@ class Main:
                         if back.rect.collidepoint(pygame.mouse.get_pos()):
                             self.screen_state = "home"  # Go back to home screen
 
-
             pygame.display.update()
 
         pygame.quit()
@@ -70,4 +75,6 @@ class Main:
 
 if __name__ == "__main__":
     Main().run()
+
+
 
