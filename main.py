@@ -2,6 +2,7 @@ import pygame
 import sys
 from Button import Button
 
+
 class Main:
     def __init__(self):
         pygame.init()
@@ -28,6 +29,16 @@ class Main:
         self.title_font = pygame.font.Font("Fonts/Bubblegum.ttf", 45)  # Ensure you have a bubble-style font
         self.title_text = self.title_font.render("Welcome to Diddy Kong Island!", True, (255, 69, 0))  # Bold bubble font
         self.title_rect = self.title_text.get_rect(center=(self.SCREENW // 2, 150))
+
+        # Rules Font
+        self.rules_font = pygame.font.Font("Fonts/Bubblegum.ttf", 30)
+        self.rules_text = [
+            "Guide Diddy Kong to the treasure while",
+            " avoiding danger! Keep an eye on his health bar.",
+            "If it hits zero, the game is over.",
+            "Beat the clock and choose from three",
+            "difficulty levels: Easy, Medium, or Hard."
+        ]
 
     def run(self):
         running = True
@@ -60,6 +71,14 @@ class Main:
                 self.screen.blit(self.image, (0, 0))
                 back.draw()
 
+                if self.screen_state == "rules":
+                    y_offset = 150
+                    for line in self.rules_text:
+                        text_surface = self.rules_font.render(line, True, (255, 69, 0))
+                        text_rect = text_surface.get_rect(center=(self.SCREENW // 2, y_offset))
+                        self.screen.blit(text_surface, text_rect)
+                        y_offset += 40
+
                 # Handle back button click
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
@@ -75,6 +94,7 @@ class Main:
 
 if __name__ == "__main__":
     Main().run()
+
 
 
 
