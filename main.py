@@ -1,6 +1,5 @@
 import pygame
 import sys
-from Rules import Rules
 from Button import Button
 
 
@@ -9,6 +8,7 @@ class Main:
         pygame.init()
         self.res = (720, 720)
         self.SCREENW = self.res[0]
+        self.SCREENH = self.res[1]  # Add the height of the screen
         self.screen = pygame.display.set_mode(self.res)
         pygame.display.set_caption("Game Menu")
 
@@ -18,45 +18,79 @@ class Main:
 
         # Initialize buttons here
         self.buttons = [
-            Button(self.screen, "Play", self.SCREENW // 2 - 100, 200, 200, 50),
-            Button(self.screen, "Rules", self.SCREENW // 2 - 100, 300, 200, 50),
-            Button(self.screen, "Settings", self.SCREENW // 2 - 100, 400, 200, 50)
+            Button(self.screen, "Play", self.SCREENW // 2 - 100, 250, 200, 50),
+            Button(self.screen, "Rules", self.SCREENW // 2 - 100, 350, 200, 50),
+            Button(self.screen, "Settings", self.SCREENW // 2 - 100, 450, 200, 50)
+        ]
+
+        self.screen_state = "home"  # Initially on the home screen
+
+        # Title Font (Bubble-style)
+        self.title_font = pygame.font.Font("Fonts/Bubblegum.ttf", 45)  # Ensure you have a bubble-style font
+        self.title_text = self.title_font.render("Welcome to Diddy Kong Island!", True, (255, 69, 0))  # Bold bubble font
+        self.title_rect = self.title_text.get_rect(center=(self.SCREENW // 2, 150))
+
+        # Rules Font
+        self.rules_font = pygame.font.Font("Fonts/Bubblegum.ttf", 30)
+        self.rules_text = [
+            "Guide Diddy Kong to the treasure while",
+            " avoiding danger! Keep an eye on his health bar.",
+            "If it hits zero, the game is over.",
+            "Beat the clock and choose from three",
+            "difficulty levels: Easy, Medium, or Hard."
         ]
 
     def run(self):
         running = True
         while running:
+            self.screen.fill((0, 0, 0))  # Clear screen before drawing
+            if self.screen_state == "home":
+                self.screen.blit(self.image, (0, 0))  # Draw home screen background
 
-            self.screen.blit(self.image, (0, 0))
+                # Draw title
+                self.screen.blit(self.title_text, self.title_rect)
 
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
+                # Handle button clicks
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        running = False
 
-            # Draw buttons
-            for button in self.buttons:
-                button.draw()
+                for button in self.buttons:
+                    button.draw() #Draws the buttons
 
-            if pygame.mouse.get_pressed()[0] and self.buttons[0].rect.collidepoint(pygame.mouse.get_pos()):
-                pass
-            if pygame.mouse.get_pressed()[0] and self.buttons[1].rect.collidepoint(pygame.mouse.get_pos()):
-                back = Button(self.screen, "Back", self.SCREENW // 2 - 300, 100, 200, 50)
-                self.screen.fill("White")
+                if pygame.mouse.get_pressed()[0] and self.buttons[0].rect.collidepoint(pygame.mouse.get_pos()):
+                    pass  # Handle play button action here
+                if pygame.mouse.get_pressed()[0] and self.buttons[1].rect.collidepoint(pygame.mouse.get_pos()):
+                    self.screen_state = "rules"  # Switch to rules screen
+                if pygame.mouse.get_pressed()[0] and self.buttons[2].rect.collidepoint(pygame.mouse.get_pos()):
+                    self.screen_state = "settings"  # Switch to settings screen
+
+            elif self.screen_state == "rules" or self.screen_state == "settings":
+                # Move the back button to the bottom
+                back = Button(self.screen, "Back", self.SCREENW // 2 - 100, self.SCREENH - 200, 200, 50)
+                self.screen.blit(self.image, (0, 0))
                 back.draw()
-                pygame.display.update()
-                while not (pygame.mouse.get_pressed()[0] and back.rect.collidepoint(pygame.mouse.get_pos())):
-                    back.draw()
-                    pygame.display.update()
 
-            if pygame.mouse.get_pressed()[0] and self.buttons[2].rect.collidepoint(pygame.mouse.get_pos()):
-                self.screen.fill("White")
+                if self.screen_state == "rules":
+                    y_offset = 150
+                    for line in self.rules_text:
+                        text_surface = self.rules_font.render(line, True, (255, 69, 0))
+                        text_rect = text_surface.get_rect(center=(self.SCREENW // 2, y_offset))
+                        self.screen.blit(text_surface, text_rect)
+                        y_offset += 40
+
+                # Handle back button click
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        running = False
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        if back.rect.collidepoint(pygame.mouse.get_pos()):
+                            self.screen_state = "home"  # Go back to home screen
 
             pygame.display.update()
 
         pygame.quit()
         sys.exit()
 
-
 if __name__ == "__main__":
     Main().run()
-
