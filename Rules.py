@@ -9,7 +9,7 @@ class Rules:
         self.screen = pygame.display.set_mode(res)
         pygame.display.set_caption("Game Menu")
 
-        self.clock = pygame.time.Clock()
+        self.clock = pygame.time.Clock()#
 
         self.button = Button(self.screen, "Back", SCREENW // 2 - 300, 100, 200, 50)
 

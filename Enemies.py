@@ -11,7 +11,7 @@ class Enemy(pygame.sprite.Sprite):
        self.rect = self.surf.get_rect()
        self.rect.x = x
        self.rect.y = y
-       self.screen_w = screen_w
+       self.screen_w = screen_w#
        self.screen_h = screen_h
 
 
