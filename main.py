@@ -48,8 +48,6 @@ class Main:
 
         ]
 
-
-
         self.screen_state = "home"  # Initially on the home screen
 
         # Title Font (Bubble-style)
@@ -66,6 +64,7 @@ class Main:
             "Beat the clock and choose from three",
             "difficulty levels: Easy, Medium, or Hard."
         ]
+        self.settings_font = pygame.font.Font("Fonts/Bubblegum.ttf", 30)
         self.settings_text = [
             "Choose between the three presets below: "
         ]
@@ -110,6 +109,16 @@ class Main:
                         text_rect = text_surface.get_rect(center=(self.SCREENW // 2, y_offset))
                         self.screen.blit(text_surface, text_rect)
                         y_offset += 40
+
+                if self.screen_state == "settings":
+                    y_offset = 150
+                    for line in self.settings_text:
+                        text_surface = self.settings_font.render(line, True, (255, 69, 0))
+                        text_rect = text_surface.get_rect(center=(self.SCREENW // 2, y_offset))
+                        self.screen.blit(text_surface, text_rect)
+                        y_offset += 40
+                    for button in self.settings_buttons:
+                        button.draw()
 
                 # Handle back button click
                 for event in pygame.event.get():
