@@ -43,8 +43,8 @@ class Main:
         ]
         self.settings_buttons = [
             Button(self.screen, "Default (WASD)", self.SCREENW // 2 - 100, 250, 200, 50),
-            Button(self.screen, "IJKL", self.SCREENW // 2 - 100, 250, 200, 50),
-            Button(self.screen, "Arrows", self.SCREENW // 2 - 100, 250, 200, 50)
+            Button(self.screen, "IJKL", self.SCREENW // 2 - 100, 300, 200, 50),
+            Button(self.screen, "Arrows", self.SCREENW // 2 - 100, 350, 200, 50)
 
         ]
 
