@@ -17,11 +17,6 @@ from pygame.locals import (
     K_l
 )
 
-UP = K_w
-DOWN = K_s
-LEFT = K_a
-RIGHT = K_d
-
 class Main:
     def __init__(self):
         pygame.init()
@@ -39,6 +34,10 @@ class Main:
         self.image1 = pygame.image.load("Backgrounds/rules.png")
         self.image1 = pygame.transform.scale(self.image1, scale_rules)
 
+        self.UP = K_w
+        self.DOWN = K_s
+        self.LEFT = K_a
+        self.RIGHT = K_d
 
         # Initialize buttons here
         self.buttons = [
@@ -114,7 +113,7 @@ class Main:
                     y_offset = 260
                     self.screen.blit(self.image1, (100, 0))
                     for line in self.rules_text:
-                        text_surface = self.rules_font.render(line, True, (0, 69, 255))
+                        text_surface = self.rules_font.render(line, True, (30, 0, 0))
                         text_rect = text_surface.get_rect(center=(self.SCREENW // 2, y_offset))
                         self.screen.blit(text_surface, text_rect)
                         y_offset += 40
@@ -138,6 +137,18 @@ class Main:
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if back.rect.collidepoint(pygame.mouse.get_pos()):
                             self.screen_state = "home"  # Go back to home screen
+                        if self.settings_buttons[0].rect.collidepoint(pygame.mouse.get_pos()):
+                            pass
+                        elif self.settings_buttons[1].rect.collidepoint(pygame.mouse.get_pos()):
+                            self.UP = K_i
+                            self.DOWN = K_k
+                            self.LEFT = K_j
+                            self.RIGHT = K_l
+                        elif self.settings_buttons[2].rect.collidepoint(pygame.mouse.get_pos()):
+                            self.UP = K_UP
+                            self.DOWN = K_DOWN
+                            self.LEFT = K_LEFT
+                            self.RIGHT = K_RIGHT
 
             pygame.display.update()
 
