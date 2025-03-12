@@ -22,6 +22,14 @@ class Main:
             Button(self.screen, "Rules", self.SCREENW // 2 - 100, 350, 200, 50),
             Button(self.screen, "Settings", self.SCREENW // 2 - 100, 450, 200, 50)
         ]
+        self.settings_buttons = [
+            Button(self.screen, "Default (WASD)", self.SCREENW // 2 - 100, 250, 200, 50),
+            Button(self.screen, "IJKL", self.SCREENW // 2 - 100, 250, 200, 50),
+            Button(self.screen, "Arrows", self.SCREENW // 2 - 100, 250, 200, 50)
+
+        ]
+
+
 
         self.screen_state = "home"  # Initially on the home screen
 
@@ -39,6 +47,11 @@ class Main:
             "Beat the clock and choose from three",
             "difficulty levels: Easy, Medium, or Hard."
         ]
+        self.settings_text = [
+            "Choose between the three presets below: "
+        ]
+
+
 
     def run(self):
         running = True
