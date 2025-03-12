@@ -10,7 +10,7 @@ class Button:
         self.x = x #Top left corner of the button
         self.y = y #Top left corner of the button
         self.width = width
-        self.height = height
+        self.height = height #
         self.color = color
         self.hover_color = hover_color
         self.font = pygame.font.SysFont('Corbel', 35)
