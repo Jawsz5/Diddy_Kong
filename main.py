@@ -25,7 +25,7 @@ RIGHT = K_d
 class Main:
     def __init__(self):
         pygame.init()
-        self.res = (720, 720)
+        self.res = (800, 800)
         self.SCREENW = self.res[0]
         self.SCREENH = self.res[1]  # Add the height of the screen
         self.screen = pygame.display.set_mode(self.res)
@@ -35,6 +35,11 @@ class Main:
         self.image = pygame.image.load("Backgrounds/Home_Screen_Background.webp")
         self.image = pygame.transform.scale(self.image, self.res)
 
+        scale_rules = (600,700)
+        self.image1 = pygame.image.load("Backgrounds/rules.png")
+        self.image1 = pygame.transform.scale(self.image1, scale_rules)
+
+
         # Initialize buttons here
         self.buttons = [
             Button(self.screen, "Play", self.SCREENW // 2 - 100, 250, 200, 50),
@@ -43,8 +48,8 @@ class Main:
         ]
         self.settings_buttons = [
             Button(self.screen, "Default (WASD)", self.SCREENW // 2 - 100, 250, 200, 50),
-            Button(self.screen, "IJKL", self.SCREENW // 2 - 100, 300, 200, 50),
-            Button(self.screen, "Arrows", self.SCREENW // 2 - 100, 350, 200, 50)
+            Button(self.screen, "IJKL", self.SCREENW // 2 - 100, 325, 200, 50),
+            Button(self.screen, "Arrows", self.SCREENW // 2 - 100, 400, 200, 50)
 
         ]
 
@@ -56,13 +61,16 @@ class Main:
         self.title_rect = self.title_text.get_rect(center=(self.SCREENW // 2, 150))
 
         # Rules Font
-        self.rules_font = pygame.font.Font("Fonts/Bubblegum.ttf", 30)
+        self.rules_font = pygame.font.Font("Fonts/Bubblegum.ttf", 15)
         self.rules_text = [
-            "Guide Diddy Kong to the treasure while",
-            " avoiding danger! Keep an eye on his health bar.",
-            "If it hits zero, the game is over.",
-            "Beat the clock and choose from three",
-            "difficulty levels: Easy, Medium, or Hard."
+            "Guide Diddy Kong to the treasure",
+            "while avoiding danger! ",
+            "Keep an eye on his health bar.",
+            "If it hits zero, "
+            "the game is over.",
+            "Beat the clock, choose from three",
+            "difficulty levels: ",
+            "Easy, Medium, Hard."
         ]
         self.settings_font = pygame.font.Font("Fonts/Bubblegum.ttf", 30)
         self.settings_text = [
@@ -98,17 +106,20 @@ class Main:
 
             elif self.screen_state == "rules" or self.screen_state == "settings":
                 # Move the back button to the bottom
-                back = Button(self.screen, "Back", self.SCREENW // 2 - 100, self.SCREENH - 200, 200, 50)
+                back = Button(self.screen, "Back", self.SCREENW // 2 - 100, self.SCREENH - 100, 200, 50)
                 self.screen.blit(self.image, (0, 0))
                 back.draw()
 
                 if self.screen_state == "rules":
-                    y_offset = 150
+                    y_offset = 260
+                    self.screen.blit(self.image1, (100, 0))
                     for line in self.rules_text:
-                        text_surface = self.rules_font.render(line, True, (255, 69, 0))
+                        text_surface = self.rules_font.render(line, True, (0, 69, 255))
                         text_rect = text_surface.get_rect(center=(self.SCREENW // 2, y_offset))
                         self.screen.blit(text_surface, text_rect)
                         y_offset += 40
+
+
 
                 if self.screen_state == "settings":
                     y_offset = 150
