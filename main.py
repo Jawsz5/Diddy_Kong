@@ -1,7 +1,26 @@
 import pygame
 import sys
 from Button import Button
+from pygame.locals import (
+    K_UP,
+    K_DOWN,
+    K_LEFT,
+    K_RIGHT,
+    K_SPACE,
+    K_w,
+    K_a,
+    K_s,
+    K_d,
+    K_i,
+    K_j,
+    K_k,
+    K_l
+)
 
+UP = K_w
+DOWN = K_s
+LEFT = K_a
+RIGHT = K_d
 
 class Main:
     def __init__(self):
