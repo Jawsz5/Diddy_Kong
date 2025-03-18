@@ -15,7 +15,6 @@ class Level1():
         self.left = left
         self.right = right
 
-
     def run(self):
         running = True
         while running:
@@ -25,4 +24,4 @@ class Level1():
                     running = False
             pygame.display.update()
             self.clock.tick(30)
-        pygame.quit()
+
