@@ -139,6 +139,11 @@ class Main:
                         button.draw()
 
                 if self.screen_state == "play":
+                    self.title_font = pygame.font.Font("Fonts/Bubblegum.ttf", 38)  # Ensure you have a bubble-style font
+                    self.title_text = self.title_font.render("Choose between the three levels below:", True,
+                                                             (255, 69, 0))  # Bold bubble font
+                    self.title_rect = self.title_text.get_rect(center=(self.SCREENW // 2, 175))
+                    self.screen.blit(self.title_text, self.title_rect)
                     for button in self.levels:
                         button.draw()
                     if pygame.mouse.get_pressed()[0] and self.levels[0].rect.collidepoint(pygame.mouse.get_pos()):
