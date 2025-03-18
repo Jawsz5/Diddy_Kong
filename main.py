@@ -2,6 +2,7 @@ import pygame
 import sys
 from Button import Button
 from Player import Player
+from Level1 import Level1
 from pygame.locals import (
     K_UP,
     K_DOWN,
@@ -53,9 +54,9 @@ class Main:
 
         ]
         self.levels = [
-            Button(self.screen, "Easy", self.SCREENW // 2 - 100, 250, 200, 50),
-            Button(self.screen, "Medium", self.SCREENW // 2 - 100, 325, 200, 50),
-            Button(self.screen, "Hard", self.SCREENW // 2 - 100, 400, 200, 50)
+            Button(self.screen, "Easy", self.SCREENW // 2 - 100, 325, 200, 50),
+            Button(self.screen, "Medium", self.SCREENW // 2 - 100, 410, 200, 50),
+            Button(self.screen, "Hard", self.SCREENW // 2 - 100, 495, 200, 50)
         ]
 
         self.screen_state = "home"  # Initially on the home screen
@@ -138,9 +139,11 @@ class Main:
                         button.draw()
 
                 if self.screen_state == "play":
-
                     for button in self.levels:
                         button.draw()
+                    if pygame.mouse.get_pressed()[0] and self.levels[0].rect.collidepoint(pygame.mouse.get_pos()):
+                        level1 = Level1(self.UP, self.DOWN, self.LEFT, self.RIGHT)
+                        level1.run()
 
                 # Handle back button click
                 for event in pygame.event.get():
