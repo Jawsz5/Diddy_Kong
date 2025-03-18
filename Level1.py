@@ -21,13 +21,13 @@ class Level1():
         all_sprites_list = pygame.sprite.Group()
 
         #1st platform
-        plat_1 = Platform((255, 0, 0), 200, 200)
+        plat_1 = Platform((255, 0, 0), 150, 200)
         plat_1.rect.x = 200
         plat_1.rect.y = 300
         all_sprites_list.add(plat_1)
 
         #2nd
-        plat_2 = Platform((200, 255, 0), 200, 200)
+        plat_2 = Platform((200, 255, 0), 150, 200)
         plat_2.rect.x = 400
         plat_2.rect.y = 300
         all_sprites_list.add(plat_2)
@@ -46,4 +46,6 @@ class Level1():
                     running = False
             pygame.display.update()
             self.clock.tick(30)
+
+
 
