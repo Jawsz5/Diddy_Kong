@@ -1,6 +1,7 @@
 import pygame
 import sys
 from Button import Button
+from Player import Player
 from pygame.locals import (
     K_UP,
     K_DOWN,
@@ -51,6 +52,11 @@ class Main:
             Button(self.screen, "Arrows", self.SCREENW // 2 - 100, 400, 200, 50)
 
         ]
+        self.levels = [
+            Button(self.screen, "Easy", self.SCREENW // 2 - 100, 250, 200, 50),
+            Button(self.screen, "Medium", self.SCREENW // 2 - 100, 325, 200, 50),
+            Button(self.screen, "Hard", self.SCREENW // 2 - 100, 400, 200, 50)
+        ]
 
         self.screen_state = "home"  # Initially on the home screen
 
@@ -97,13 +103,14 @@ class Main:
                     button.draw() #Draws the buttons
 
                 if pygame.mouse.get_pressed()[0] and self.buttons[0].rect.collidepoint(pygame.mouse.get_pos()):
-                    pass  # Handle play button action here
+                    self.screen_state = "play" # Switch to play screen
                 if pygame.mouse.get_pressed()[0] and self.buttons[1].rect.collidepoint(pygame.mouse.get_pos()):
                     self.screen_state = "rules"  # Switch to rules screen
                 if pygame.mouse.get_pressed()[0] and self.buttons[2].rect.collidepoint(pygame.mouse.get_pos()):
                     self.screen_state = "settings"  # Switch to settings screen
 
-            elif self.screen_state == "rules" or self.screen_state == "settings":
+
+            elif self.screen_state == "rules" or self.screen_state == "play" or self.screen_state == "settings":
                 # Move the back button to the bottom
                 back = Button(self.screen, "Back", self.SCREENW // 2 - 100, self.SCREENH - 100, 200, 50)
                 self.screen.blit(self.image, (0, 0))
@@ -128,6 +135,11 @@ class Main:
                         self.screen.blit(text_surface, text_rect)
                         y_offset += 40
                     for button in self.settings_buttons:
+                        button.draw()
+
+                if self.screen_state == "play":
+
+                    for button in self.levels:
                         button.draw()
 
                 # Handle back button click
