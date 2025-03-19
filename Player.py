@@ -13,15 +13,15 @@ from pygame.locals import (
 )
 
 
-UP = K_UP
-DOWN = K_DOWN
-LEFT = K_LEFT
-RIGHT = K_RIGHT
+W = K_UP
+S = K_DOWN
+A = K_LEFT
+D = K_RIGHT
 
 
 class Player(pygame.sprite.Sprite):
    def __init__(self, screen_w, screen_h, x, y):
-       super(Player, self).__init__()
+       super(Player,self).__init__()
        self.surf = pygame.Surface((WIDTH, HEIGHT))
        self.surf.fill("Black")
        self.rect = self.surf.get_rect()
@@ -37,13 +37,13 @@ class Player(pygame.sprite.Sprite):
        return self.rect
    # Move the sprite based on user keypresses
    def update(self, pressed_keys):
-       if pressed_keys[UP]:
+       if pressed_keys[0]:
            self.rect.move_ip(0, -SPEED)
-       if pressed_keys[DOWN]:
+       if pressed_keys[1]:
            self.rect.move_ip(0, SPEED)
-       if pressed_keys[LEFT]:
+       if pressed_keys[2]:
            self.rect.move_ip(-SPEED, 0)
-       if pressed_keys[RIGHT]:
+       if pressed_keys[3]:
            self.rect.move_ip(SPEED, 0)
 
 
@@ -52,3 +52,7 @@ class Player(pygame.sprite.Sprite):
            self.rect.left = 0
        if self.rect.right > self.screen_w:
            self.rect.right = self.screen_w
+
+
+
+

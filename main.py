@@ -3,6 +3,8 @@ import sys
 from Button import Button
 from Player import Player
 from Level1 import Level1
+from Level2 import Level2
+from Level3 import Level3
 from pygame.locals import (
     K_UP,
     K_DOWN,
@@ -59,7 +61,8 @@ class Main:
             Button(self.screen, "Hard", self.SCREENW // 2 - 100, 495, 200, 50)
         ]
 
-        self.screen_state = "home"  # Initially on the home screen
+        self.screen_state = "home"
+        self.player1 = None# Initially on the home screen
 
         # Title Font (Bubble-style)
         self.title_font = pygame.font.Font("Fonts/Bubblegum.ttf", 45)  # Ensure you have a bubble-style font
@@ -147,8 +150,26 @@ class Main:
                     for button in self.levels:
                         button.draw()
                     if pygame.mouse.get_pressed()[0] and self.levels[0].rect.collidepoint(pygame.mouse.get_pos()):
+                        self.player1 = Player(self.SCREENW, self.SCREENH, 100, 700)
                         level1 = Level1(self.UP, self.DOWN, self.LEFT, self.RIGHT)
+                        self.screen.blit(self.player1.get_surface(), self.player1.get_rect())
                         level1.run()
+                    if pygame.mouse.get_pressed()[0] and self.levels[1].rect.collidepoint(pygame.mouse.get_pos()):
+                        self.player1 = Player(self.SCREENW, self.SCREENH, 100, 700)
+                        level2 = Level2(self.UP, self.DOWN, self.LEFT, self.RIGHT)
+                        self.screen.blit(self.player1.get_surface(), self.player1.get_rect())
+                        level2.run()
+                    if pygame.mouse.get_pressed()[0] and self.levels[2].rect.collidepoint(pygame.mouse.get_pos()):
+                        self.player1 = Player(self.SCREENW, self.SCREENH, 100, 700)
+                        level3 = Level3(self.UP, self.DOWN, self.LEFT, self.RIGHT)
+                        self.screen.blit(self.player1.get_surface(), self.player1.get_rect())
+                        level3.run()
+
+
+
+
+
+
 
                 # Handle back button click
                 for event in pygame.event.get():
