@@ -86,7 +86,7 @@ class Main:
         self.settings_text = [
             "Choose between the three presets below: "
         ]
-
+        self.settings_text_2 = ["You are using the WASD preset"]
 
 
     def run(self):
@@ -143,6 +143,11 @@ class Main:
                         y_offset += 40
                     for button in self.settings_buttons:
                         button.draw()
+                    for line in self.settings_text_2:
+                        text_surface = self.settings_font.render(line, True, (255, 69, 0))
+                        text_rect = text_surface.get_rect(center=(self.SCREENW // 2, y_offset + 350))
+                        self.screen.blit(text_surface, text_rect)
+                        y_offset += 40
 
                 if self.screen_state == "play":
                     self.title_font = pygame.font.Font("Fonts/Bubblegum.ttf", 38)  # Ensure you have a bubble-style font
@@ -170,17 +175,19 @@ class Main:
                         if back.rect.collidepoint(pygame.mouse.get_pos()):
                             self.screen_state = "home"  # Go back to home screen
                         if self.settings_buttons[0].rect.collidepoint(pygame.mouse.get_pos()) and self.screen_state == "settings":
-                            pass
+                            self.settings_text_2 = ["You are using the WASD preset"]
                         elif self.settings_buttons[1].rect.collidepoint(pygame.mouse.get_pos()) and self.screen_state == "settings":
                             self.UP = K_i
                             self.DOWN = K_k
                             self.LEFT = K_j
                             self.RIGHT = K_l
+                            self.settings_text_2 = ["You are using the IJKL preset"]
                         elif self.settings_buttons[2].rect.collidepoint(pygame.mouse.get_pos()) and self.screen_state == "settings":
                             self.UP = K_UP
                             self.DOWN = K_DOWN
                             self.LEFT = K_LEFT
                             self.RIGHT = K_RIGHT
+                            self.settings_text_2 = ["You are using the ARROWS preset"]
 
             pygame.display.update()
 
