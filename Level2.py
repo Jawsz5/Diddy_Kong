@@ -18,7 +18,6 @@ class Level2():
         self.left = left
         self.right = right
 
-
     def add_sprite(self):
         all_sprites_list = pygame.sprite.Group()
 
