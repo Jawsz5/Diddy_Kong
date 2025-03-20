@@ -150,19 +150,13 @@ class Main:
                     for button in self.levels:
                         button.draw()
                     if pygame.mouse.get_pressed()[0] and self.levels[0].rect.collidepoint(pygame.mouse.get_pos()):
-                        self.player1 = Player(self.SCREENW, self.SCREENH, 100, 700)
                         level1 = Level1(self.UP, self.DOWN, self.LEFT, self.RIGHT)
-                        self.screen.blit(self.player1.get_surface(), self.player1.get_rect())
                         level1.run()
                     if pygame.mouse.get_pressed()[0] and self.levels[1].rect.collidepoint(pygame.mouse.get_pos()):
-                        self.player1 = Player(self.SCREENW, self.SCREENH, 100, 700)
                         level2 = Level2(self.UP, self.DOWN, self.LEFT, self.RIGHT)
-                        self.screen.blit(self.player1.get_surface(), self.player1.get_rect())
                         level2.run()
                     if pygame.mouse.get_pressed()[0] and self.levels[2].rect.collidepoint(pygame.mouse.get_pos()):
-                        self.player1 = Player(self.SCREENW, self.SCREENH, 100, 700)
                         level3 = Level3(self.UP, self.DOWN, self.LEFT, self.RIGHT)
-                        self.screen.blit(self.player1.get_surface(), self.player1.get_rect())
                         level3.run()
 
 
@@ -178,14 +172,14 @@ class Main:
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if back.rect.collidepoint(pygame.mouse.get_pos()):
                             self.screen_state = "home"  # Go back to home screen
-                        if self.settings_buttons[0].rect.collidepoint(pygame.mouse.get_pos()):
+                        if self.settings_buttons[0].rect.collidepoint(pygame.mouse.get_pos()) and self.screen_state == "settings":
                             pass
-                        elif self.settings_buttons[1].rect.collidepoint(pygame.mouse.get_pos()):
+                        elif self.settings_buttons[1].rect.collidepoint(pygame.mouse.get_pos()) and self.screen_state == "settings":
                             self.UP = K_i
                             self.DOWN = K_k
                             self.LEFT = K_j
                             self.RIGHT = K_l
-                        elif self.settings_buttons[2].rect.collidepoint(pygame.mouse.get_pos()):
+                        elif self.settings_buttons[2].rect.collidepoint(pygame.mouse.get_pos()) and self.screen_state == "settings":
                             self.UP = K_UP
                             self.DOWN = K_DOWN
                             self.LEFT = K_LEFT

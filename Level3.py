@@ -17,6 +17,7 @@ class Level3():
         self.down = down
         self.left = left
         self.right = right
+        self.player = Player(SCREENW, SCREENH, 50, 50)
 
 
     def add_sprite(self):
@@ -42,9 +43,16 @@ class Level3():
     def run(self):
         running = True
         while running:
+            if pygame.key.get_pressed()[self.up]:
+                print([self.up, self.down, self.left, self.right])
             self.add_sprite().draw(self.screen)
+            self.screen.blit(self.player.get_surface(), self.player.get_rect())
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
-            pygame.display.update()
-            self.clock.tick(30)
+            self.player.update([self.up, self.down, self.left, self.right])
+
+            pygame.display.flip()
+            self.clock.tick(90)
+
+            self.screen.blit(self.image, (0, 0))

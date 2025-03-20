@@ -37,13 +37,13 @@ class Player(pygame.sprite.Sprite):
        return self.rect
    # Move the sprite based on user keypresses
    def update(self, pressed_keys):
-       if pressed_keys[0]:
+       if pygame.key.get_pressed()[pressed_keys[0]]:
            self.rect.move_ip(0, -SPEED)
-       if pressed_keys[1]:
+       if pygame.key.get_pressed()[pressed_keys[1]]:
            self.rect.move_ip(0, SPEED)
-       if pressed_keys[2]:
+       if pygame.key.get_pressed()[pressed_keys[2]]:
            self.rect.move_ip(-SPEED, 0)
-       if pressed_keys[3]:
+       if pygame.key.get_pressed()[pressed_keys[3]]:
            self.rect.move_ip(SPEED, 0)
 
 
