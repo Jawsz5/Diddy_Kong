@@ -20,6 +20,7 @@ class Level1():
         self.player = Player(SCREENW, SCREENH, 50, 50)
 
 
+
     def add_sprite(self):
         all_sprites_list = pygame.sprite.Group()
 

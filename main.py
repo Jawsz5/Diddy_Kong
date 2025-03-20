@@ -159,12 +159,6 @@ class Main:
                         level3 = Level3(self.UP, self.DOWN, self.LEFT, self.RIGHT)
                         level3.run()
 
-
-
-
-
-
-
                 # Handle back button click
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:

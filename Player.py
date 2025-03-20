@@ -49,9 +49,16 @@ class Player(pygame.sprite.Sprite):
 
        # Keep player on the screen
        if self.rect.left < 0:
-           self.rect.left = 0
+            self.rect.left = 0
        if self.rect.right > self.screen_w:
-           self.rect.right = self.screen_w
+            self.rect.right = self.screen_w
+       if self.rect.top < 0:
+           self.rect.top = 0
+       if self.rect.bottom > 800:
+           self.rect.bottom = 800
+
+
+
 
 
 
