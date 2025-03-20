@@ -47,7 +47,8 @@ class Main:
         self.buttons = [
             Button(self.screen, "Play", self.SCREENW // 2 - 100, 250, 200, 50),
             Button(self.screen, "Rules", self.SCREENW // 2 - 100, 350, 200, 50),
-            Button(self.screen, "Settings", self.SCREENW // 2 - 100, 450, 200, 50)
+            Button(self.screen, "Settings", self.SCREENW // 2 - 100, 450, 200, 50),
+            Button(self.screen, "Quit", self.SCREENW // 2 - 100, 650, 200, 50)
         ]
         self.settings_buttons = [
             Button(self.screen, "Default (WASD)", self.SCREENW // 2 - 100, 250, 200, 50),
@@ -112,6 +113,8 @@ class Main:
                     self.screen_state = "rules"  # Switch to rules screen
                 if pygame.mouse.get_pressed()[0] and self.buttons[2].rect.collidepoint(pygame.mouse.get_pos()):
                     self.screen_state = "settings"  # Switch to settings screen
+                if pygame.mouse.get_pressed()[0] and self.buttons[3].rect.collidepoint(pygame.mouse.get_pos()):
+                    pygame.quit()
 
 
             elif self.screen_state == "rules" or self.screen_state == "play" or self.screen_state == "settings":
