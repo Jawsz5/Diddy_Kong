@@ -44,8 +44,6 @@ class Level1():
     def run(self):
         running = True
         while running:
-            if pygame.key.get_pressed()[self.up]:
-                print([self.up, self.down, self.left, self.right])
             self.add_sprite().draw(self.screen)
             self.screen.blit(self.player.get_surface(), self.player.get_rect())
             for event in pygame.event.get():
