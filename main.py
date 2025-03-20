@@ -175,6 +175,10 @@ class Main:
                         if back.rect.collidepoint(pygame.mouse.get_pos()):
                             self.screen_state = "home"  # Go back to home screen
                         if self.settings_buttons[0].rect.collidepoint(pygame.mouse.get_pos()) and self.screen_state == "settings":
+                            self.UP = K_w
+                            self.DOWN = K_s
+                            self.LEFT = K_a
+                            self.RIGHT = K_d
                             self.settings_text_2 = ["You are using the WASD preset"]
                         elif self.settings_buttons[1].rect.collidepoint(pygame.mouse.get_pos()) and self.screen_state == "settings":
                             self.UP = K_i
