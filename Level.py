@@ -28,7 +28,7 @@ class Level:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
-            self.player.run(self.up, self.down, self.left, self.right)
+            self.player.update([self.up, self.down, self.left, self.right])
 
             pygame.display.flip()
             self.clock.tick(90)
