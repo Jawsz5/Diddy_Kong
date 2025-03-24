@@ -2,23 +2,18 @@ import pygame
 from Button import Button
 from Platform import Platform
 from Player import Player
+from HealthBar import HealthBar
+from Level import Level
 SCREENW = 800
 SCREENH = 800
 
-class Level1():
+class Level1(Level):
     def __init__(self, up, down, left, right):
-        self.screen = pygame.display.set_mode((SCREENW, SCREENH))
-        self.clock = pygame.time.Clock()
+        super().__init__(up, down, left, right)
         pygame.display.set_caption("Level 1")
         self.image = pygame.image.load("Backgrounds/Background_level1.png")
         self.image = pygame.transform.scale(self.image, (SCREENW, SCREENH))
         self.screen.blit(self.image, (0, 0))
-        self.up = up
-        self.down = down
-        self.left = left
-        self.right = right
-        self.player = Player(SCREENW, SCREENH, 50, 50)
-
 
 
     def add_sprite(self):
@@ -46,10 +41,12 @@ class Level1():
         while running:
             self.add_sprite().draw(self.screen)
             self.screen.blit(self.player.get_surface(), self.player.get_rect())
+            HealthBar(self.screen)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
             self.player.update([self.up, self.down, self.left, self.right])
+
 
             pygame.display.flip()
             self.clock.tick(90)

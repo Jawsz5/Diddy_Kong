@@ -20,7 +20,7 @@ D = K_RIGHT
 
 
 class Player(pygame.sprite.Sprite):
-   def __init__(self, screen_w, screen_h, x, y):
+   def __init__(self, screen_w, screen_h, x, y,):
        super(Player,self).__init__()
        self.surf = pygame.Surface((WIDTH, HEIGHT))
        self.surf.fill("Black")
@@ -29,6 +29,7 @@ class Player(pygame.sprite.Sprite):
        self.rect.y = y
        self.screen_w = screen_w
        self.screen_h = screen_h
+       self.gravity = 1
 
 
    def get_surface(self):
@@ -37,6 +38,8 @@ class Player(pygame.sprite.Sprite):
        return self.rect
    # Move the sprite based on user keypresses
    def update(self, pressed_keys):
+       if(self.rect.bottom < 750):
+           self.rect.move_ip(0, self.gravity)
        if pygame.key.get_pressed()[pressed_keys[0]]:
            self.rect.move_ip(0, -SPEED)
        if pygame.key.get_pressed()[pressed_keys[1]]:
@@ -54,8 +57,8 @@ class Player(pygame.sprite.Sprite):
             self.rect.right = self.screen_w
        if self.rect.top < 0:
            self.rect.top = 0
-       if self.rect.bottom > 800:
-           self.rect.bottom = 800
+       if self.rect.bottom > 750:
+           self.rect.bottom = 750
 
 
 
