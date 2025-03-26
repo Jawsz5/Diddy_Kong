@@ -50,7 +50,7 @@ class Player(pygame.sprite.Sprite):
 
        # Jumping logic (key press, not hold)
        if pygame.key.get_pressed()[pressed_keys[0]] and self.on_ground:
-           self.velY = -10  # Upward velocity for jump (adjust as needed)
+           self.velY = -12  # Upward velocity for jump (adjust as needed)
            self.on_ground = False
 
        # Crouch (if needed)
