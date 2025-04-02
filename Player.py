@@ -52,21 +52,21 @@ class Player(pygame.sprite.Sprite):
     def update(self, pressed_keys):
         # Gravity acceleration (constant downward force)
         self.gravity = 0.5
-        self.velY += self.gravity
-        #self.rect.y = max(self.velY + self.rect.y, 750)
+
+        if not self.on_ground:
+            self.velY += self.gravity
+
+        if self.count % 45 == 0:
+            self.on_ground = True
 
         # Apply vertical movement
         self.rect.move_ip(0, self.velY)
 
-        if self.rect.y == 0:
-            self.count = 0
-            self.velY = 0
-        # Jumping logic (key press, not hold)
-        if pygame.key.get_pressed()[pressed_keys[0]]:
-            self.jump()
-        print(self.velY)
-        #print(self.count)
-        # self.count += 1
+        if pygame.key.get_pressed()[pressed_keys[0]] and self.on_ground:
+            self.velY = -12
+            self.on_ground = False
+
+        self.count += 1
 
         # Crouch (if needed)
         #if pygame.key.get_pressed()[pressed_keys[1]] and self.on_ground:
@@ -83,6 +83,7 @@ class Player(pygame.sprite.Sprite):
             self.rect.bottom = 750
             self.velY = 0
             self.on_ground = True  # Player is back on the ground
+            self.count = 0
 
         # Prevent player from going off-screen
         if self.rect.left < 0:
