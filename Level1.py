@@ -44,23 +44,18 @@ class Level1(Level):
         all_sprites_list.add(plat_4)
 
 
-        # Vertical Platforms
-        plat_5 = Platform((255, 0, 255), 200, 100)
-        plat_5.rect.x = 650
-        plat_5.rect.y = 200
+        plat_5 = Platform((0, 255, 255), 200, 150)
+        plat_5.rect.x = 200
+        plat_5.rect.y = 100
         all_sprites_list.add(plat_5)
 
 
-        plat_6 = Platform((0, 255, 255), 200, 150)
-        plat_6.rect.x = 200
-        plat_6.rect.y = 100
+        plat_6 = Platform((100, 100, 100), 200, 200)
+        plat_6.rect.x = 500
+        plat_6.rect.y = 300
         all_sprites_list.add(plat_6)
 
 
-        plat_7 = Platform((100, 100, 100), 200, 200)
-        plat_7.rect.x = 500
-        plat_7.rect.y = 300
-        all_sprites_list.add(plat_7)
         return all_sprites_list
 
 
@@ -74,6 +69,7 @@ class Level1(Level):
                 if event.type == pygame.QUIT:
                     running = False
             self.player.update([self.up, self.down, self.left, self.right])
+
 
             pygame.display.flip()
             self.clock.tick(90)

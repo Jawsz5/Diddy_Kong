@@ -32,6 +32,7 @@ class Player(pygame.sprite.Sprite):
        self.gravity = 1
        self.velY = 0
        self.on_ground = True
+       self.count = 0
 
 
    def get_surface(self):
@@ -45,6 +46,11 @@ class Player(pygame.sprite.Sprite):
        if not self.on_ground:
            self.velY += self.gravity  # Gradual increase in downward velocity
 
+       if self.count % 45 == 0:
+          self.on_ground = True
+
+
+
        # Apply vertical movement
        self.rect.move_ip(0, self.velY)
 
@@ -52,6 +58,11 @@ class Player(pygame.sprite.Sprite):
        if pygame.key.get_pressed()[pressed_keys[0]] and self.on_ground:
            self.velY = -12  # Upward velocity for jump (adjust as needed)
            self.on_ground = False
+       self.count += 1
+
+
+
+
 
        # Crouch (if needed)
        #if pygame.key.get_pressed()[pressed_keys[1]] and self.on_ground:
@@ -68,6 +79,7 @@ class Player(pygame.sprite.Sprite):
            self.rect.bottom = 750
            self.velY = 0
            self.on_ground = True  # Player is back on the ground
+           self.count = 0
 
        # Prevent player from going off-screen
        if self.rect.left < 0:
@@ -76,11 +88,3 @@ class Player(pygame.sprite.Sprite):
            self.rect.right = self.screen_w
        if self.rect.top < 0:
            self.rect.top = 0
-
-
-
-
-
-
-
-

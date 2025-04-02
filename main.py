@@ -83,7 +83,7 @@ class Main:
             "Easy, Medium, Hard."
         ]
         self.settings_font = pygame.font.Font("Fonts/Bubblegum.ttf", 30)
-        self.settings_text = [
+        self.settiwngs_text = [
             "Choose between the three presets below: "
         ]
         self.settings_text_2 = ["You are using the WASD preset"]

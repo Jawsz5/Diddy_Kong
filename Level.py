@@ -12,7 +12,7 @@ class Level:
         self.down = down
         self.left = left
         self.right = right
-        self.player = Player(SCREENW, SCREENH, 50, 700)
+        self.player = Player(SCREENW, SCREENH, 150, 700)
 
 
     def add_sprite(self):
