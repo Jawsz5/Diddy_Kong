@@ -88,3 +88,4 @@ class Player(pygame.sprite.Sprite):
            self.rect.right = self.screen_w
        if self.rect.top < 0:
            self.rect.top = 0
+           #Hello
