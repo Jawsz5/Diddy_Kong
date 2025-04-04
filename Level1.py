@@ -4,6 +4,7 @@ from Platform import Platform
 from Player import Player
 from HealthBar import HealthBar
 from Level import Level
+from Treasure import Treasure
 SCREENW = 800
 SCREENH = 800
 
@@ -50,6 +51,8 @@ class Level1(Level):
         all_sprites_list.add(plat_6)
 
         return all_sprites_list
+
+
 
     def run(self):
         # Create the platforms group once outside the loop
