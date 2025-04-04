@@ -62,6 +62,7 @@ class Level3(Level):
             platforms.draw(self.screen)
             # Draw the player
             self.screen.blit(self.player.get_surface(), self.player.get_rect())
+            self.screen.blit(self.treasure.get_surface(), self.treasure.get_rect())
             HealthBar(self.screen)
 
             for event in pygame.event.get():
@@ -70,6 +71,8 @@ class Level3(Level):
 
             # Update player with keys and platform group
             self.player.update([self.up, self.down, self.left, self.right], platforms)
+            if self.player.rect.colliderect(self.treasure.rect):
+                running = False
 
             pygame.display.flip()
             self.clock.tick(90)

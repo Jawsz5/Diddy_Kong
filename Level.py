@@ -1,6 +1,7 @@
 import pygame
 from Player import Player
 from HealthBar import HealthBar
+from Treasure import Treasure
 SCREENW = 800
 SCREENH = 800
 
@@ -13,6 +14,7 @@ class Level:
         self.left = left
         self.right = right
         self.player = Player(SCREENW, SCREENH, 150, 700)
+        self.treasure = Treasure(700,50)
 
 
     def add_sprite(self):
@@ -24,6 +26,7 @@ class Level:
         while running:
             self.add_sprite().draw(self.screen)
             self.screen.blit(self.player.get_surface(), self.player.get_rect())
+            self.screen.blit(self.treasure.get_surface(),self.treasure.get_rect())
             HealthBar(self.screen)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
