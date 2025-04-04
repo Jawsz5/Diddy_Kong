@@ -53,7 +53,6 @@ class Player(pygame.sprite.Sprite):
             if self.velY > 0:  # Falling down
                 self.rect.bottom = platform.rect.top
                 self.velY = 0
-                self.on_ground = True
                 self.jump_count = 2  # Reset jumps when landing
                 self.double_jumped = False
             elif self.velY < 0:  # Moving upward (jumping)
