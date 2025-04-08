@@ -11,7 +11,7 @@ class Level3(Level):
     def __init__(self, up, down, left, right):
         super().__init__(up, down, left, right)
         pygame.display.set_caption("Level 2")
-        self.image = pygame.image.load("Backgrounds/Background_level3.png")
+        self.image = pygame.image.load("Backgrounds/Background_level1.png")
         self.image = pygame.transform.scale(self.image, (SCREENW, SCREENH))
         self.screen.blit(self.image, (0, 0))
 
