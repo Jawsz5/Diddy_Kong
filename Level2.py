@@ -15,8 +15,8 @@ class Level2(Level):
         self.image = pygame.transform.scale(self.image, (SCREENW, SCREENH))
         self.image_end = pygame.image.load("End_Game_Screens/Game_Over2.png")
         self.image_end = pygame.transform.scale(self.image_end, (SCREENW, SCREENH))
-        self.Game_Over_Buttons = Button(self.screen, "Play Again", SCREENW // 2 - 130, 475, 200, 50)
-        self.Game_Over_Buttons1 = Button(self.screen, "Back to Menu", SCREENW // 2 - 130, 550, 200, 50)
+        self.Game_Over_Buttons = Button(self.screen, "Play Again", SCREENW // 2 - 100, 475, 200, 50)
+        self.Game_Over_Buttons1 = Button(self.screen, "Back to Menu", SCREENW // 2 - 100, 550, 200, 50)
         self.screen.blit(self.image, (0, 0))
         self.screen_state = True  # set to True if playing the game
 
