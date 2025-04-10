@@ -14,7 +14,9 @@ class Treasure(pygame.sprite.Sprite):
         self.rect = self.surf.get_rect()
         self.rect.x = x
         self.rect.y = y
-
+        background_images = [pygame.image.load("Characters/treasure.png"),
+                             pygame.image.load("Characters/treasure_open.png")]
+        image = background_images[0]
 
     def get_surface(self):
         return self.surf
