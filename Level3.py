@@ -85,6 +85,8 @@ class Level3(Level):
                 self.Game_Over_Buttons.draw()
                 self.Game_Over_Buttons1.draw()
                 for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        running = False
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if pygame.mouse.get_pressed()[0] and self.Game_Over_Buttons.rect.collidepoint(
                                 pygame.mouse.get_pos()):
