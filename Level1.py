@@ -74,7 +74,10 @@ class Level1(Level):
                 platforms.draw(self.screen)
                 # Draw the player
                 self.screen.blit(self.player.get_surface(), self.player.get_rect())
-                self.screen.blit(self.treasure.get_surface(), self.treasure.get_rect())
+                #draw the treasure
+                image = pygame.image.load("Characters/treasure.png")
+                image = pygame.transform.scale(image, self.treasure.rect.x, self.treasure.rect.y)
+                self.screen.blit(image, self.treasure.get_rect())
                 HealthBar(self.screen)
 
                 for event in pygame.event.get():
