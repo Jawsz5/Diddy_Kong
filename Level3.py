@@ -80,6 +80,7 @@ class Level3(Level):
 
                 HealthBar(self.screen)
 
+
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         running = False
