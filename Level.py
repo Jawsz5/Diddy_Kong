@@ -17,6 +17,9 @@ class Level:
         self.treasure = Treasure(700,50)
 
 
+
+
+
     def add_sprite(self):
         all_sprites_list = pygame.sprite.Group()
         return all_sprites_list

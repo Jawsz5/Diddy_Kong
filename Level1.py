@@ -18,7 +18,12 @@ class Level1(Level):
         self.image_end = pygame.transform.scale(self.image_end, (SCREENW, SCREENH))
         self.Game_Over_Buttons = Button(self.screen, "Play Again", SCREENW // 2 - 130, 475, 200, 50)
         self.Game_Over_Buttons1 = Button(self.screen, "Back to Menu", SCREENW // 2 - 130, 550, 200, 50)
+        self.image1 = pygame.image.load("Characters/treasure.png")
+        self.image1 = pygame.transform.scale(self.image1, (200, 200))
+        self.image2 = pygame.image.load("Characters/treasure_open.png")
+        self.image2 = pygame.transform.scale(self.image2, (200, 200))
         self.screen.blit(self.image, (0, 0))
+        self.screen.blit(self.image1, (0,0))
         self.screen_state = True #set to True if playing the game
 
 
@@ -72,9 +77,12 @@ class Level1(Level):
                 self.screen.blit(self.image, (0, 0))
                 # Draw platforms
                 platforms.draw(self.screen)
+                self.screen.blit(self.treasure.get_surface(), self.treasure.get_rect())
+                self.screen.blit(self.image1, (650, 25))
+
                 # Draw the player
                 self.screen.blit(self.player.get_surface(), self.player.get_rect())
-                self.screen.blit(self.treasure.get_surface(), self.treasure.get_rect())
+
                 HealthBar(self.screen)
 
                 for event in pygame.event.get():
