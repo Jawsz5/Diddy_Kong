@@ -38,6 +38,9 @@ class Main:
         self.image1 = pygame.image.load("Backgrounds/rules.png")
         self.image1 = pygame.transform.scale(self.image1, scale_rules)
 
+        self.image2 = pygame.image.load("Backgrounds/Title_Text_Background.png")
+        self.image2 = pygame.transform.scale(self.image2, (720, 75))
+
         self.UP = K_w
         self.DOWN = K_s
         self.LEFT = K_a
@@ -69,6 +72,7 @@ class Main:
         self.title_font = pygame.font.Font("Fonts/Bubblegum.ttf", 45)  # Ensure you have a bubble-style font
         self.title_text = self.title_font.render("Welcome to Diddy Kong Island!", True, (255, 69, 0))  # Bold bubble font
         self.title_rect = self.title_text.get_rect(center=(self.SCREENW // 2, 150))
+        self.title_rect_back = self.title_text.get_rect(center=(self.SCREENW // 2 - 15, 130))
 
         # Rules Font
         self.rules_font = pygame.font.Font("Fonts/Bubblegum.ttf", 15)
@@ -94,9 +98,11 @@ class Main:
         while running:
             self.screen.fill((0, 0, 0))  # Clear screen before drawing
             if self.screen_state == "home":
+                self.image2 = pygame.transform.scale(self.image2, (720, 75))
                 self.screen.blit(self.image, (0, 0))  # Draw home screen background
 
                 # Draw title
+                self.screen.blit(self.image2, self.title_rect_back)
                 self.screen.blit(self.title_text, self.title_rect)
 
                 # Handle button clicks
@@ -136,24 +142,35 @@ class Main:
 
                 if self.screen_state == "settings":
                     y_offset = 150
+                    self.image2 = pygame.transform.scale(self.image2, (700, 50))
                     for line in self.settings_text:
                         text_surface = self.settings_font.render(line, True, (255, 69, 0))
                         text_rect = text_surface.get_rect(center=(self.SCREENW // 2, y_offset))
+                        text_rect_back1 = text_surface.get_rect(center=(self.SCREENW // 2 - 40, y_offset - 10))
+
+                        self.screen.blit(self.image2, text_rect_back1)
                         self.screen.blit(text_surface, text_rect)
                         y_offset += 40
                     for button in self.settings_buttons:
                         button.draw()
                     for line in self.settings_text_2:
+                        self.image2 = pygame.transform.scale(self.image2, (550, 50))
                         text_surface = self.settings_font.render(line, True, (255, 69, 0))
                         text_rect = text_surface.get_rect(center=(self.SCREENW // 2, y_offset + 350))
+                        text_rect_back1 = text_surface.get_rect(center=(self.SCREENW // 2 - 45, y_offset + 340))
+
+                        self.screen.blit(self.image2, text_rect_back1)
                         self.screen.blit(text_surface, text_rect)
                         y_offset += 40
 
                 if self.screen_state == "play":
+                    self.image2 = pygame.transform.scale(self.image2, (770, 50))
                     self.title_font = pygame.font.Font("Fonts/Bubblegum.ttf", 38)  # Ensure you have a bubble-style font
                     self.title_text = self.title_font.render("Choose between the three levels below:", True,
                                                              (255, 69, 0))  # Bold bubble font
                     self.title_rect = self.title_text.get_rect(center=(self.SCREENW // 2, 175))
+                    self.title_rect_back1 = self.title_text.get_rect(center=(self.SCREENW // 2 - 5, 170))
+                    self.screen.blit(self.image2, self.title_rect_back1)
                     self.screen.blit(self.title_text, self.title_rect)
                     for button in self.levels:
                         button.draw()
