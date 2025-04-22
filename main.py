@@ -51,7 +51,7 @@ class Main:
             Button(self.screen, "Quit", self.SCREENW // 2 - 100, 650, 200, 50)
         ]
         self.settings_buttons = [
-            Button(self.screen, "Default (WASD)", self.SCREENW // 2 - 100, 250, 200, 50),
+            Button(self.screen, "WASD", self.SCREENW // 2 - 100, 250, 200, 50),
             Button(self.screen, "IJKL", self.SCREENW // 2 - 100, 325, 200, 50),
             Button(self.screen, "Arrows", self.SCREENW // 2 - 100, 400, 200, 50)
 
@@ -166,7 +166,9 @@ class Main:
                     if pygame.mouse.get_pressed()[0] and self.levels[2].rect.collidepoint(pygame.mouse.get_pos()):
                         level3 = Level3(self.UP, self.DOWN, self.LEFT, self.RIGHT)
                         level3.run()
-
+                #Sets title text when on home screen
+                self.title_text = self.title_font.render("Welcome to Diddy Kong Island!", True, (255, 69, 0))
+                self.title_rect = self.title_text.get_rect(center=(self.SCREENW // 2, 150))
                 # Handle back button click
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
