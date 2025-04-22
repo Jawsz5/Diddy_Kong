@@ -16,16 +16,24 @@ class Button:
         self.font = pygame.font.SysFont('Corbel', 35)
         self.rendered_text = self.font.render(self.text, True, (255, 255, 255))
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
+        self.image = pygame.transform.scale(pygame.image.load('Backgrounds/Button_Background.png'), (200, 50))
+        self.image2 = pygame.transform.scale(pygame.image.load('Backgrounds/Button_Hover.png'), (200, 50))
 
     def draw(self):
         mouse = pygame.mouse.get_pos() # Gets mouse cursor position -> (x,y)
+        t = True
         if (self.x <= mouse[0] <= self.x + self.width and self.y <= mouse[1] <= self.y + self.height):
-            rect_color = self.hover_color #If mouse is on the button, change the color
+            t = False #If mouse is on the button, change the color
         else:
-            rect_color = self.color
+            t = True
 
+        rect = (self.x, self.y)
 
-        pygame.draw.rect(self.screen, rect_color, [self.x, self.y, self.width, self.height])
+        pygame.draw.rect(self.screen, self.color, [self.x, self.y, self.width, self.height])
+        if t:
+            self.screen.blit(self.image, self.rect)
+        else:
+            self.screen.blit(self.image2, rect)
         text_x = self.x + (self.width - self.rendered_text.get_width()) // 2
         text_y = self.y + (self.height - self.rendered_text.get_height()) // 2
         self.screen.blit(self.rendered_text, (text_x, text_y)) #Draws the text on the button
