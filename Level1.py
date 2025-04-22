@@ -19,7 +19,7 @@ class Level1(Level):
         self.image_end = pygame.image.load("End_Game_Screens/Game_Over1.png")
         self.image_end = pygame.transform.scale(self.image_end, (SCREENW, SCREENH))
         self.Game_Over_Buttons = Button(self.screen, "Play Again", SCREENW // 2 - 130, 475, 200, 50)
-        self.Game_Over_Buttons1 = Button(self.screen, "Back to Menu", SCREENW // 2 - 130, 550, 200, 50)
+        self.Game_Over_Buttons1 = Button(self.screen, "Menu", SCREENW // 2 - 130, 550, 200, 50)
         self.image1 = pygame.image.load("Characters/treasure.png")
         self.image1 = pygame.transform.scale(self.image1, (200, 200))
         self.image2 = pygame.image.load("Characters/treasure_open.png")
