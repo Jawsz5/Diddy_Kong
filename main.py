@@ -199,4 +199,5 @@ class Main:
         sys.exit() #
 
 if __name__ == "__main__":
+    print(pygame.font.get_fonts())
     Main().run()
