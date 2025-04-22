@@ -12,7 +12,7 @@ class Button:
         self.width = width
         self.height = height
         self.color = color
-        self.hover_color = hover_color
+        self.hover_color = hover_color#
 
         self.font = pygame.font.Font("Fonts/PixelifySans-VariableFont_wght.ttf", 35) #font for the buttons
         #self.font = pygame.font.SysFont('applesgothicneo', 35)
