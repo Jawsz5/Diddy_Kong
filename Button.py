@@ -14,8 +14,8 @@ class Button:
         self.color = color
         self.hover_color = hover_color
 
-        #self.font = pygame.font.Font("Fonts/Bubblegum.ttf", 35) #font for the buttons
-        self.font = pygame.font.SysFont('applesgothicneo', 35)
+        self.font = pygame.font.Font("Fonts/PixelifySans-VariableFont_wght.ttf", 35) #font for the buttons
+        #self.font = pygame.font.SysFont('applesgothicneo', 35)
         self.rendered_text = self.font.render(self.text, True, (255, 255, 255))
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         self.image = pygame.transform.scale(pygame.image.load('Backgrounds/Button_Background.png'), (200, 50))
