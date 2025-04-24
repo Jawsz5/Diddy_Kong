@@ -70,7 +70,7 @@ class Main:
 
         # Title Font (Bubble-style)
         self.title_font = pygame.font.Font("Fonts/Bubblegum.ttf", 45)  # Ensure you have a bubble-style font
-        self.title_text = self.title_font.render("Welcome to Diddy Kong Island!", True, (255, 69, 0))  # Bold bubble font
+        self.title_text = self.title_font.render("Welcome to Diddy Kong Island!", True, (255, 230, 60))  # Bold bubble font
         self.title_rect = self.title_text.get_rect(center=(self.SCREENW // 2, 150))
         self.title_rect_back = self.title_text.get_rect(center=(self.SCREENW // 2 - 15, 130))
 
@@ -144,7 +144,7 @@ class Main:
                     y_offset = 150
                     self.image2 = pygame.transform.scale(self.image2, (700, 50))
                     for line in self.settings_text:
-                        text_surface = self.settings_font.render(line, True, (255, 69, 0))
+                        text_surface = self.settings_font.render(line, True, (255, 230, 60))
                         text_rect = text_surface.get_rect(center=(self.SCREENW // 2, y_offset))
                         text_rect_back1 = text_surface.get_rect(center=(self.SCREENW // 2 - 40, y_offset - 10))
 
@@ -155,11 +155,11 @@ class Main:
                         button.draw()
                     for line in self.settings_text_2:
                         self.image2 = pygame.transform.scale(self.image2, (550, 50))
-                        text_surface = self.settings_font.render(line, True, (255, 69, 0))
+                        text_surface = self.settings_font.render(line, True, (255, 230, 60))
                         text_rect = text_surface.get_rect(center=(self.SCREENW // 2, y_offset + 350))
                         text_rect_back1 = text_surface.get_rect(center=(self.SCREENW // 2 - 45, y_offset + 340))
 
-                        self.screen.blit(self.image2, text_rect_back1)
+                        self.screen.blit(self.image2, (130, 515))
                         self.screen.blit(text_surface, text_rect)
                         y_offset += 40
 
@@ -167,7 +167,7 @@ class Main:
                     self.image2 = pygame.transform.scale(self.image2, (770, 50))
                     self.title_font = pygame.font.Font("Fonts/Bubblegum.ttf", 38)  # Ensure you have a bubble-style font
                     self.title_text = self.title_font.render("Choose between the three levels below:", True,
-                                                             (255, 69, 0))  # Bold bubble font
+                                                             (255, 230, 60))  # Bold bubble font
                     self.title_rect = self.title_text.get_rect(center=(self.SCREENW // 2, 175))
                     self.title_rect_back1 = self.title_text.get_rect(center=(self.SCREENW // 2 - 5, 170))
                     self.screen.blit(self.image2, self.title_rect_back1)
@@ -184,7 +184,7 @@ class Main:
                         level3 = Level3(self.UP, self.DOWN, self.LEFT, self.RIGHT)
                         level3.run()
                 #Sets title text when on home screen
-                self.title_text = self.title_font.render("Welcome to Diddy Kong Island!", True, (255, 69, 0))
+                self.title_text = self.title_font.render("Welcome to Diddy Kong Island!", True, (255, 230, 60))
                 self.title_rect = self.title_text.get_rect(center=(self.SCREENW // 2, 150))
                 # Handle back button click
                 for event in pygame.event.get():
@@ -218,5 +218,5 @@ class Main:
         sys.exit() #
 
 if __name__ == "__main__":
-    print(pygame.font.get_fonts())
+    # print(pygame.font.get_fonts())
     Main().run()
