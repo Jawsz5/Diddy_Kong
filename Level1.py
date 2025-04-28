@@ -30,12 +30,12 @@ class Level1(Level):
         self.won = False
 
 
-
     def add_sprite(self):
         all_sprites_list = pygame.sprite.Group()
 
         # Horizontal Platforms (20% smaller than original)
-        plat_1 = Platform((255, 0, 0), 80, 90)  # originally (150, 200)
+        brown = pygame.image.load("Textures/Brown_Rock.png")
+        plat_1 = Platform((255, 0, 0), 80, 90, brown)  # originally (150, 200)
         plat_1.rect.x = 100
         plat_1.rect.y = 600
         all_sprites_list.add(plat_1)
