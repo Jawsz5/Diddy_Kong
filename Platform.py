@@ -10,6 +10,7 @@ class Platform(pygame.sprite.Sprite):
             self.image = pygame.transform.scale(texture, (width, height))
         else:
             self.image = pygame.Surface((width, height))
+            self.image.fill((100,100,100))
         # Draw the platform rectangle starting at (0,0)
         # Get the rect from the image (which now matches the drawn platform)
         self.rect = self.image.get_rect()
