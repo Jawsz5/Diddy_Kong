@@ -40,12 +40,14 @@ class Level1(Level):
         plat_1.rect.y = 600
         all_sprites_list.add(plat_1)
 
-        plat_2 = Platform((0, 255, 0), 110, 120)  # originally (200, 200)
+        brick = pygame.image.load("Textures/Brick.png")
+        plat_2 = Platform((0, 255, 0), 120, 60, brick)  # originally (200, 200)
         plat_2.rect.x = 400
         plat_2.rect.y = 550
         all_sprites_list.add(plat_2)
 
-        plat_3 = Platform((0, 0, 255), 54, 98)  # originally (120, 200)
+        jungle = pygame.image.load("Textures/jungle.png")
+        plat_3 = Platform((0, 0, 255), 54, 98, jungle)  # originally (120, 200)
         plat_3.rect.x = 300
         plat_3.rect.y = 400
         all_sprites_list.add(plat_3)
