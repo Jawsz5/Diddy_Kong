@@ -32,27 +32,38 @@ class Level1(Level):
 
     def add_sprite(self):
         all_sprites_list = pygame.sprite.Group()
+        jungle = pygame.image.load("Textures/jungle.png")
 
         # Horizontal Platforms (20% smaller than original)
-        brown = pygame.image.load("Textures/Brown_Rock.png")
-        plat_1 = Platform((255, 0, 0), 80, 90, 100, 600, 130, 620, brown)  # originally (150, 200)
+        plat_1 = Platform((255, 0, 0), 80, 90, jungle)  # originally (150, 200)
+        plat_1.rect.x = 100
+        plat_1.rect.y = 600
         all_sprites_list.add(plat_1)
 
-        brick = pygame.image.load("Textures/Brick.png")
-        plat_2 = Platform((0, 255, 0), 120, 60, 400, 550, brick)  # originally (200, 200)
+        plat_2 = Platform((0, 255, 0), 120, 60, jungle)  # originally (200, 200)
+        plat_2.rect.x = 400
+        plat_2.rect.y = 550
         all_sprites_list.add(plat_2)
 
-        jungle = pygame.image.load("Textures/jungle.png")
-        plat_3 = Platform((0, 0, 255), 54, 98, 300, 400, jungle)  # originally (120, 200)
+
+        plat_3 = Platform((0, 0, 255), 90, 98, jungle)  # originally (120, 200)
+        plat_3.rect.x = 300
+        plat_3.rect.y = 400
         all_sprites_list.add(plat_3)
 
-        plat_4 = Platform((255, 255, 0), 92, 112, 50, 300)  # originally (180, 200)
+        plat_4 = Platform((255, 255, 0), 92, 112, jungle)  # originally (180, 200)
+        plat_4.rect.x = 50
+        plat_4.rect.y = 300
         all_sprites_list.add(plat_4)
 
-        plat_5 = Platform((0, 255, 255), 100, 64, 200, 100)  # originally (200, 150)
+        plat_5 = Platform((0, 255, 255), 100, 64, jungle)  # originally (200, 150)
+        plat_5.rect.x = 200
+        plat_5.rect.y = 100
         all_sprites_list.add(plat_5)
 
-        plat_6 = Platform((100, 100, 100), 95, 77, 500, 300)  # originally (200, 200)
+        plat_6 = Platform((100, 100, 100), 95, 77, jungle)  # originally (200, 200)
+        plat_6.rect.x = 500
+        plat_6.rect.y = 300
         all_sprites_list.add(plat_6)
 
         return all_sprites_list
