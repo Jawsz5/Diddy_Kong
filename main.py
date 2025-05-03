@@ -45,7 +45,7 @@ class Main:
         self.DOWN = K_s
         self.LEFT = K_a
         self.RIGHT = K_d
-
+        self.SHOOT = K_SPACE
         # Initialize buttons here
         self.buttons = [
             Button(self.screen, "Play", self.SCREENW // 2 - 100, 250, 200, 50),

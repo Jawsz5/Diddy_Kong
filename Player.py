@@ -28,10 +28,13 @@ class Player(pygame.sprite.Sprite):
         self.screen_h = screen_h
         self.gravity = 1
         self.velY = 0
+        self.velX = 0
         self.on_ground = True
         self.jump_count = 2  # Allow 2 jumps: initial jump + double jump
         self.prev_jump_pressed = False  # Tracks previous jump key state
         self.double_jumped = False      # Flag for whether a double jump has been used
+        self.R = True
+        self.rate = 10
 
     def get_surface(self):
         return self.surf
@@ -79,6 +82,7 @@ class Player(pygame.sprite.Sprite):
             self.rect.x -= 5
         if pygame.key.get_pressed()[pressed_keys[3]]:
             self.rect.x += 5
+        self.velX = self.rect.x - old_x
 
         # Check horizontal collisions
         collided_platforms = pygame.sprite.spritecollide(self, platforms, False)
@@ -108,3 +112,47 @@ class Player(pygame.sprite.Sprite):
             self.rect.right = self.screen_w
         if self.rect.top < 0:
             self.rect.top = 0
+
+        #animation
+        #TODO switch from colors to actual images
+
+        #jumping up
+        if self.velY > 0:
+            self.surf.fill("Red")
+        #falling
+        if self.velY < 0:
+            self.surf.fill("Pink")
+        #stationary
+        if self.velY == 0 and self.velX == 0:
+            self.surf.fill("Blue")
+
+        #rate of switching between animations
+        self.rate -= 2
+        if self.rate <= 2:
+            #moving right
+            p = True #boolean that ensures only one animation is used per frame
+            if self.velX > 0 and self.velY == 0:
+                if not self.R and p:
+                    self.surf.fill("Green")
+                    self.R = True
+                    p = False
+                if self.R and p:
+                    self.surf.fill("Yellow")
+                    self.R = False
+                    p = False
+            #moving left - repeat of right, but with different animations
+            p = True
+            if self.velX < 0 and self.velY == 0:
+                if not self.R and p:
+                    self.surf.fill("Purple")
+                    self.R = True
+                    p = False
+                if self.R and p:
+                    self.surf.fill("Yellow")
+                    self.R = False
+                    p = False
+            self.rate = 30
+
+
+
+

@@ -7,7 +7,7 @@ from Player import Player
 from HealthBar import HealthBar
 from Level import Level
 from Treasure import Treasure
-from Hitbox_Conversion import jungle_conversion
+from Helper import jungle_conversion
 SCREENW = 800
 SCREENH = 800
 
