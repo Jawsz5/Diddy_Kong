@@ -36,35 +36,25 @@ class Level1(Level):
         jungle = pygame.image.load("Textures/jungle.png")
 
         # Horizontal Platforms (20% smaller than original)
-        img_coords = [(100, 590, 80, 70), (400, 540, 80, 70)]
+        img_coords = [(100, 590, 80, 70), (400, 540, 80, 70), (300, 400, 80, 70), (50, 300, 80, 70), (200, 100, 80, 70), (500, 300, 80, 70)]
 
         plat_1 = Platform(jungle_conversion(img_coords[0]), img_coords[0], jungle)  # originally (150, 200)
         all_sprites_list.add(plat_1)
 
         plat_2 = Platform(jungle_conversion(img_coords[1]), img_coords[1], jungle)  # originally (200, 200)
         all_sprites_list.add(plat_2)
-        '''
-        plat_3 = Platform((0, 0, 255), 90, 98, jungle)  # originally (120, 200)
-        plat_3.rect.x = 300
-        plat_3.rect.y = 400
+
+        plat_3 = Platform(jungle_conversion(img_coords[2]), img_coords[2], jungle)
         all_sprites_list.add(plat_3)
 
-        plat_4 = Platform((255, 255, 0), 92, 112, jungle)  # originally (180, 200)
-        plat_4.rect.x = 50
-        plat_4.rect.y = 300
+        plat_4 = Platform(jungle_conversion(img_coords[3]), img_coords[3], jungle)
         all_sprites_list.add(plat_4)
 
-        plat_5 = Platform((0, 255, 255), 100, 64, jungle)  # originally (200, 150)
-        plat_5.rect.x = 200
-        plat_5.rect.y = 100
+        plat_5 = Platform(jungle_conversion(img_coords[4]), img_coords[4], jungle)
         all_sprites_list.add(plat_5)
 
-        plat_6 = Platform((100, 100, 100), 95, 77, jungle)  # originally (200, 200)
-        plat_6.rect.x = 500
-        plat_6.rect.y = 300
+        plat_6 = Platform(jungle_conversion(img_coords[5]), img_coords[5], jungle)
         all_sprites_list.add(plat_6)
-        
-        '''
 
         return all_sprites_list
 
