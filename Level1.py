@@ -35,14 +35,14 @@ class Level1(Level):
         jungle = pygame.image.load("Textures/jungle.png")
 
         # Horizontal Platforms (20% smaller than original)
-        plat_1 = Platform((255, 0, 0), 80, 90, jungle)  # originally (150, 200)
-        plat_1.rect.x = 100
-        plat_1.rect.y = 600
+        plat_1 = Platform((100, 625, 80, 15), (100, 590, 80, 70), jungle)  # originally (150, 200)
         all_sprites_list.add(plat_1)
+
+        '''
 
         plat_2 = Platform((0, 255, 0), 120, 60, jungle)  # originally (200, 200)
         plat_2.rect.x = 400
-        plat_2.rect.y = 550
+        plat_2.rect.y = 530
         all_sprites_list.add(plat_2)
 
 
@@ -65,6 +65,8 @@ class Level1(Level):
         plat_6.rect.x = 500
         plat_6.rect.y = 300
         all_sprites_list.add(plat_6)
+        
+        '''
 
         return all_sprites_list
 

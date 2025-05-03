@@ -46,17 +46,20 @@ class Player(pygame.sprite.Sprite):
         if not self.on_ground:
             self.velY += self.gravity
         self.rect.y += self.velY
-
-        # Check vertical collisions
-        collided_platforms = pygame.sprite.spritecollide(self, platforms, False)
+        #pass the hit boxes of platforms into the sprite collide function
+        def collide_hitbox(player, platform):
+            """Return True when player's visual rect touches platform.hitbox."""
+            return player.rect.colliderect(platform.hitbox)
+        collided_platforms = pygame.sprite.spritecollide(self, platforms, False, collide_hitbox)
         for platform in collided_platforms:
             if self.velY > 0:  # Falling down
-                self.rect.bottom = platform.rect.top
+                #print(platform.hitbox.top, platform.hitbox.bottom)
+                self.rect.bottom = platform.hitbox.top
                 self.velY = 0
                 self.jump_count = 2  # Reset jumps when landing
                 self.double_jumped = False
             elif self.velY < 0:  # Moving upward (jumping)
-                self.rect.top = platform.rect.bottom
+                self.rect.top = platform.hitbox.bottom
                 self.velY = 0
 
         # --- Jump Logic ---
@@ -70,7 +73,7 @@ class Player(pygame.sprite.Sprite):
                     self.double_jumped = True
         self.prev_jump_pressed = current_jump_pressed
 
-        # --- Horizontal Movement and Collision ---
+        # Horizontal Movement and Collision
         old_x = self.rect.x
         if pygame.key.get_pressed()[pressed_keys[2]]:
             self.rect.x -= 5
@@ -81,13 +84,15 @@ class Player(pygame.sprite.Sprite):
         collided_platforms = pygame.sprite.spritecollide(self, platforms, False)
         for platform in collided_platforms:
             # Moving right: adjust right side of player
+            '''
             if self.rect.x > old_x:
                 self.rect.right = platform.rect.left
             # Moving left: adjust left side of player
             elif self.rect.x < old_x:
                 self.rect.left = platform.rect.right
+            '''
 
-        # --- Ground and Screen Boundary Collision ---
+        # Ground and Screen Boundary Collision
         # Check collision with the ground (assuming ground level is 750)
         if self.rect.bottom > 750:
             self.rect.bottom = 750
