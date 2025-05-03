@@ -17,10 +17,6 @@ class Platform(pygame.sprite.Sprite):
             self.image = pygame.Surface((w, h), pygame.SRCALPHA)
             self.image.fill(color)
 
-        #self.image = pygame.transform.scale(plat, (w, h))
-        # 3)  where to BLIT the image; use either of the 2 lines below, not both
-        # the next line can be commented to decouple the image and rect
-        #self.image_rect = self.image.get_rect(topleft=self.rect.topleft)
         self.image = pygame.transform.scale(plat, (w, h))
         # place the image manually
         self.rect = pygame.Rect(img_rect)

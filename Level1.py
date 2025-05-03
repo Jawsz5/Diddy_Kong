@@ -38,14 +38,10 @@ class Level1(Level):
         plat_1 = Platform((100, 625, 80, 15), (100, 590, 80, 70), jungle)  # originally (150, 200)
         all_sprites_list.add(plat_1)
 
-        '''
 
-        plat_2 = Platform((0, 255, 0), 120, 60, jungle)  # originally (200, 200)
-        plat_2.rect.x = 400
-        plat_2.rect.y = 530
+        plat_2 = Platform((400, 575, 80, 15), (400, 540, 80, 70), jungle)  # originally (200, 200)
         all_sprites_list.add(plat_2)
-
-
+        '''
         plat_3 = Platform((0, 0, 255), 90, 98, jungle)  # originally (120, 200)
         plat_3.rect.x = 300
         plat_3.rect.y = 400
