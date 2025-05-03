@@ -1,9 +1,10 @@
 import pygame
-from Helper import move
+from Helper import animate
 
 SPEED  =  2
-WIDTH  = 50
-HEIGHT = 50
+WIDTH  = 100
+HEIGHT = 100
+size = (WIDTH, HEIGHT)
 
 from pygame.locals import (
     K_UP,
@@ -20,9 +21,9 @@ D = K_RIGHT
 class Player(pygame.sprite.Sprite):
     def __init__(self, screen_w, screen_h, x, y):
         super(Player, self).__init__()
-        self.surf = pygame.Surface((WIDTH, HEIGHT))
-        self.surf.fill("Black")
-        self.rect = self.surf.get_rect()
+        image = pygame.image.load("Characters/DIDDY_KONG/stationary.png").convert_alpha()
+        self.image = pygame.transform.scale(image, size)
+        self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
         self.screen_w = screen_w
@@ -34,11 +35,17 @@ class Player(pygame.sprite.Sprite):
         self.jump_count = 2  # Allow 2 jumps: initial jump + double jump
         self.prev_jump_pressed = False  # Tracks previous jump key state
         self.double_jumped = False      # Flag for whether a double jump has been used
-        self.R = True
-        self.rate = 10
+        self.animations = [
+            self.image,
+            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/jump.png"), size),
+            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/fall.png"), size),
+            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/right1.png"), size),
+            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/right2.png"), size),
+            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/left1.png"), size),
+            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/left2.png"), size)]
 
     def get_surface(self):
-        return self.surf
+        return self.image
 
     def get_rect(self):
         return self.rect
@@ -89,6 +96,8 @@ class Player(pygame.sprite.Sprite):
         collided_platforms = pygame.sprite.spritecollide(self, platforms, False)
         for platform in collided_platforms:
             # Moving right: adjust right side of player
+
+            #TODO ask mourya what this is for. IDR putting it in
             '''
             if self.rect.x > old_x:
                 self.rect.right = platform.rect.left
@@ -114,7 +123,8 @@ class Player(pygame.sprite.Sprite):
         if self.rect.top < 0:
             self.rect.top = 0
 
-        move(self, self.velX, self.velY, 1)
+        #animation
+        animate(self, self.velX, self.velY, self.animations)
 
 
 
