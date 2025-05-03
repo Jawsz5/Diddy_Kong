@@ -7,6 +7,7 @@ from Player import Player
 from HealthBar import HealthBar
 from Level import Level
 from Treasure import Treasure
+from Hitbox_Conversion import jungle_conversion
 SCREENW = 800
 SCREENH = 800
 
@@ -35,11 +36,12 @@ class Level1(Level):
         jungle = pygame.image.load("Textures/jungle.png")
 
         # Horizontal Platforms (20% smaller than original)
-        plat_1 = Platform((100, 625, 80, 15), (100, 590, 80, 70), jungle)  # originally (150, 200)
+        img_coords = [(100, 590, 80, 70), (400, 540, 80, 70)]
+
+        plat_1 = Platform(jungle_conversion(img_coords[0]), img_coords[0], jungle)  # originally (150, 200)
         all_sprites_list.add(plat_1)
 
-
-        plat_2 = Platform((400, 575, 80, 15), (400, 540, 80, 70), jungle)  # originally (200, 200)
+        plat_2 = Platform(jungle_conversion(img_coords[1]), img_coords[1], jungle)  # originally (200, 200)
         all_sprites_list.add(plat_2)
         '''
         plat_3 = Platform((0, 0, 255), 90, 98, jungle)  # originally (120, 200)
