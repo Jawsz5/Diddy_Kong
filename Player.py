@@ -1,4 +1,5 @@
 import pygame
+from Helper import move
 
 SPEED  =  2
 WIDTH  = 50
@@ -113,45 +114,9 @@ class Player(pygame.sprite.Sprite):
         if self.rect.top < 0:
             self.rect.top = 0
 
-        #animation
-        #TODO switch from colors to actual images
+        move(self, self.velX, self.velY, 1)
 
-        #jumping up
-        if self.velY > 0:
-            self.surf.fill("Red")
-        #falling
-        if self.velY < 0:
-            self.surf.fill("Pink")
-        #stationary
-        if self.velY == 0 and self.velX == 0:
-            self.surf.fill("Blue")
 
-        #rate of switching between animations
-        self.rate -= 2
-        if self.rate <= 2:
-            #moving right
-            p = True #boolean that ensures only one animation is used per frame
-            if self.velX > 0 and self.velY == 0:
-                if not self.R and p:
-                    self.surf.fill("Green")
-                    self.R = True
-                    p = False
-                if self.R and p:
-                    self.surf.fill("Yellow")
-                    self.R = False
-                    p = False
-            #moving left - repeat of right, but with different animations
-            p = True
-            if self.velX < 0 and self.velY == 0:
-                if not self.R and p:
-                    self.surf.fill("Purple")
-                    self.R = True
-                    p = False
-                if self.R and p:
-                    self.surf.fill("Yellow")
-                    self.R = False
-                    p = False
-            self.rate = 30
 
 
 
