@@ -4,11 +4,13 @@ from Button import Button
 from Platform import Platform
 from Player import Player
 from HealthBar import HealthBar
-from Level import Level
+from Level1 import Level1
 SCREENW = 800
 SCREENH = 800
 
-class Level3(Level):
+
+
+class Level3(Level1):
     def __init__(self, up, down, left, right):
         super().__init__(up, down, left, right)
         pygame.display.set_caption("Level 2")
@@ -16,18 +18,10 @@ class Level3(Level):
         self.image = pygame.transform.scale(self.image, (SCREENW, SCREENH))
         self.image_end = pygame.image.load("End_Game_Screens/Game_Over3.png")
         self.image_end = pygame.transform.scale(self.image_end, (SCREENW, SCREENH))
-        self.Game_Over_Buttons = Button(self.screen, "Play Again", SCREENW // 2 - 100, 525, 200, 50)
-        self.Game_Over_Buttons1 = Button(self.screen, "Menu", SCREENW // 2 - 100, 600, 200, 50)
-        self.image1 = pygame.image.load("Characters/treasure.png")
-        self.image1 = pygame.transform.scale(self.image1, (200, 200))
-        self.image2 = pygame.image.load("Characters/treasure_open.png")
-        self.image2 = pygame.transform.scale(self.image2, (240, 200))
-        self.screen.blit(self.image, (0, 0))
-        self.screen.blit(self.image1, (0, 0))
-        self.screen_state = True  # set to True if playing the game
-        self.won = False
 
+    '''
     def add_sprite(self):
+        
         all_sprites_list = pygame.sprite.Group()
 
         # Horizontal Platforms (20% smaller than original)
@@ -62,6 +56,7 @@ class Level3(Level):
         all_sprites_list.add(plat_6)
 
         return all_sprites_list
+    '''
 
     def run(self):
         # Create the platforms group once outside the loop
