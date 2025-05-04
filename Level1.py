@@ -8,6 +8,7 @@ from HealthBar import HealthBar
 from Level import Level
 from Treasure import Treasure
 from Helper import jungle_conversion
+from Coins import Coins
 SCREENW = 800
 SCREENH = 800
 
@@ -29,9 +30,10 @@ class Level1(Level):
         self.screen.blit(self.image1, (0,0))
         self.screen_state = True #set to True if playing the game
         self.won = False
+        self.count = 1
 
 
-    def add_sprite(self):
+    def Platform(self):
         all_sprites_list = pygame.sprite.Group()
         jungle = pygame.image.load("Textures/jungle.png")
 
@@ -58,11 +60,32 @@ class Level1(Level):
 
         return all_sprites_list
 
+    def Coins(self):
+        all_sprites_list = pygame.sprite.Group()
+
+        Banana1 = Coins(520, 280, 50, 50)
+        all_sprites_list.add(Banana1)
+
+        Banana2 = Coins(220, 80, 50, 50)
+        all_sprites_list.add(Banana2)
+
+        Banana3 = Coins(120, 570, 50, 50)
+        all_sprites_list.add(Banana3)
+
+        Banana4 = Coins(320, 380, 50, 50)
+        all_sprites_list.add(Banana4)
+
+        return all_sprites_list
+
+
+
+
 
 
     def run(self):
         # Create the platforms group once outside the loop
-        platforms = self.add_sprite()
+        platforms = self.Platform()
+        coins = self.Coins()
 
         running = True
         while running:
@@ -72,19 +95,27 @@ class Level1(Level):
                 self.screen.blit(self.image, (0, 0))
                 # Draw platforms
                 platforms.draw(self.screen)
+                coins.draw(self.screen)
                 self.screen.blit(self.treasure.get_surface(), self.treasure.get_rect())
                 self.screen.blit(self.image1, (620, -20))
 
                 # Draw the player
                 self.screen.blit(self.player.get_surface(), self.player.get_rect())
 
-                HealthBar(self.screen)
+                Health = HealthBar(self.screen, 100, 100*self.count)
 
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         running = False
                 # Update player with keys and platform group
                 self.player.update([self.up, self.down, self.left, self.right], platforms)
+                for coin in coins:
+                    if self.player.rect.colliderect(coin.rect):
+                        if Health.current < Health.max:
+                            self.count += 0.1
+                            coins.remove(coin)
+
+
                 if self.player.rect.colliderect(self.treasure.rect):
                     self.screen.blit(self.image2, (600, -20))
                     self.won = True

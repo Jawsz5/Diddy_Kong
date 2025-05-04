@@ -1,5 +1,6 @@
 import pygame
 from Helper import animate
+from HealthBar import HealthBar
 
 SPEED  =  2
 WIDTH  = 100
@@ -72,7 +73,6 @@ class Player(pygame.sprite.Sprite):
             elif self.velY < 0:  # Moving upward (jumping)
                 self.rect.top = platform.hitbox.bottom
                 self.velY = 0
-
         # --- Jump Logic ---
         current_jump_pressed = pygame.key.get_pressed()[pressed_keys[0]]
         if current_jump_pressed and not self.prev_jump_pressed:

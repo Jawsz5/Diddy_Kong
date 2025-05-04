@@ -1,11 +1,10 @@
 import pygame
 
 class HealthBar:
-    def __init__(self, screen):
-        max_health = 100
-        health = 100
-        ratio = float(max_health/health)
+    def __init__(self, screen, max, current):
+        self.max = max
+        self.current = current
+        ratio = float(current/max)
         pygame.draw.rect(screen, "red", (50, 50, 200, 20), 0, 10)
         pygame.draw.rect(screen, "Green", (50, 50, 200*ratio, 20), 0 ,10)
-
 

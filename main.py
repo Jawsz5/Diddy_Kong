@@ -1,7 +1,6 @@
 import pygame
 import sys
 from Button import Button
-from Player import Player
 from Level1 import Level1
 from Level2 import Level2
 from Level3 import Level3
