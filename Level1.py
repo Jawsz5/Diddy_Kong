@@ -31,7 +31,7 @@ class Level1(Level):
         self.screen_state = True #set to True if playing the game
         self.won = False
         self.count = 1
-
+        self.banana_count = 0
 
     def Platform(self):
         all_sprites_list = pygame.sprite.Group()
@@ -63,26 +63,30 @@ class Level1(Level):
     def Bananas(self):
         all_sprites_list = pygame.sprite.Group()
 
-        Banana1 = Banana(520, 280, 50, 50, 20)
+        Banana1 = Banana(520, 280, 50, 50)
         all_sprites_list.add(Banana1)
 
-        Banana2 = Banana(220, 80, 50, 50, 45)
+        Banana2 = Banana(220, 80, 50, 50)
         all_sprites_list.add(Banana2)
 
-        Banana3 = Banana(120, 570, 50, 50, 70)
+        Banana3 = Banana(120, 570, 50, 50)
         all_sprites_list.add(Banana3)
 
-        Banana4 = Banana(320, 380, 50, 50, 95)
+        Banana4 = Banana(320, 380, 50, 50)
         all_sprites_list.add(Banana4)
 
         return all_sprites_list
 
+    def Bananas2(self):
+        all_sprites_list = pygame.sprite.Group()
+        return all_sprites_list
 
 
     def run(self):
         # Create the platforms group once outside the loop
         platforms = self.Platform()
         bananas = self.Bananas()
+        bananas2 = self.Bananas2()
 
         running = True
         while running:
@@ -93,6 +97,7 @@ class Level1(Level):
                 # Draw platforms
                 platforms.draw(self.screen)
                 bananas.draw(self.screen)
+                bananas2.draw(self.screen)
                 self.screen.blit(self.treasure.get_surface(), self.treasure.get_rect())
                 self.screen.blit(self.image1, (620, -20))
 
@@ -109,26 +114,34 @@ class Level1(Level):
                 for banana in bananas:
                     banana.update()
                     if self.player.rect.colliderect(banana.rect) and banana.rect.y != 10:
-                            banana.top()
-                    shoot = pygame.key.get_pressed()[pygame.K_SPACE]
-                    if shoot and banana.rect.y == 10:
+                            b = Banana(20 + self.banana_count, 10, 50, 50)
+                            bananas2.add(b)
+                            bananas.remove(banana)
+                            self.banana_count += 25
+
+                shoot = pygame.key.get_pressed()[pygame.K_SPACE]
+                t = True
+                for banana in bananas2:
+                    banana.update()
+                    if shoot and banana.rect.y == 10 and t:
                         banana.rect.y = self.player.rect.y
-                        #right shot
+                        # right shot
                         if self.player.velX > 0:
-                            banana.rect.x = self.player.rect.x + 120
+                            banana.rect.x = self.player.rect.x
                             banana.update_velX(5)
                             break
-                        #left shot
+                        # left shot
                         else:
-                            banana.rect.x = self.player.rect.x - 60
+                            banana.rect.x = self.player.rect.x
                             banana.update_velX(-5)
                             break
                     if banana.rect.right > SCREENW:
-                        bananas.remove(banana)
+                        bananas2.remove(banana)
                         break
                     if banana.rect.left < 0:
-                        bananas.remove(banana)
+                        bananas2.remove(banana)
                         break
+                    t = False
 
 
                 if self.player.rect.colliderect(self.treasure.rect):

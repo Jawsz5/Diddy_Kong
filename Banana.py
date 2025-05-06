@@ -4,7 +4,7 @@ from Helper import animate
 
 
 class Banana(pygame.sprite.Sprite):
-    def __init__(self,x,y,w,h, n):
+    def __init__(self,x,y,w,h):
         super(Banana, self).__init__()
         self.image = pygame.image.load("Bananas/Banana.png")
         size = (w,h)
@@ -14,7 +14,6 @@ class Banana(pygame.sprite.Sprite):
         self.rect.y = y
         self.velX = 0
         self.velY = 0
-        self.n = n
         self.animations = [self.image, 0, 0,
         pygame.transform.scale(pygame.image.load("Bananas/banana1.png"), size),
         pygame.transform.scale(pygame.image.load("Bananas/banana2.png"), size),
@@ -26,10 +25,6 @@ class Banana(pygame.sprite.Sprite):
 
     def get_rect(self):
         return self.rect
-
-    def top(self):
-        self.rect.x = self.n
-        self.rect.y = 10
 
     def update_velX(self, n):
         #only moves horizontally
