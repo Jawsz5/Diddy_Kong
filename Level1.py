@@ -140,8 +140,10 @@ class Level1(Level):
                     if banana.rect.left < 0:
                         bananas2.remove(banana)
                         break
+                    for platform in platforms:
+                        if banana.rect.colliderect(platform.rect):
+                            bananas2.remove(banana)
                     self.banana_shot = False
-
 
                 if self.player.rect.colliderect(self.treasure.rect):
                     self.screen.blit(self.image2, (600, -20))
