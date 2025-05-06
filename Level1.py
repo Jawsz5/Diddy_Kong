@@ -8,7 +8,7 @@ from HealthBar import HealthBar
 from Level import Level
 from Treasure import Treasure
 from Helper import jungle_conversion
-from Coins import Coins
+from Banana import Banana
 SCREENW = 800
 SCREENH = 800
 
@@ -60,32 +60,29 @@ class Level1(Level):
 
         return all_sprites_list
 
-    def Coins(self):
+    def Bananas(self):
         all_sprites_list = pygame.sprite.Group()
 
-        Banana1 = Coins(520, 280, 50, 50)
+        Banana1 = Banana(520, 280, 50, 50, 20)
         all_sprites_list.add(Banana1)
 
-        Banana2 = Coins(220, 80, 50, 50)
+        Banana2 = Banana(220, 80, 50, 50, 45)
         all_sprites_list.add(Banana2)
 
-        Banana3 = Coins(120, 570, 50, 50)
+        Banana3 = Banana(120, 570, 50, 50, 70)
         all_sprites_list.add(Banana3)
 
-        Banana4 = Coins(320, 380, 50, 50)
+        Banana4 = Banana(320, 380, 50, 50, 95)
         all_sprites_list.add(Banana4)
 
         return all_sprites_list
 
 
 
-
-
-
     def run(self):
         # Create the platforms group once outside the loop
         platforms = self.Platform()
-        coins = self.Coins()
+        bananas = self.Bananas()
 
         running = True
         while running:
@@ -95,7 +92,7 @@ class Level1(Level):
                 self.screen.blit(self.image, (0, 0))
                 # Draw platforms
                 platforms.draw(self.screen)
-                coins.draw(self.screen)
+                bananas.draw(self.screen)
                 self.screen.blit(self.treasure.get_surface(), self.treasure.get_rect())
                 self.screen.blit(self.image1, (620, -20))
 
@@ -107,13 +104,31 @@ class Level1(Level):
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         running = False
-                # Update player with keys and platform group
+                # shooting
                 self.player.update([self.up, self.down, self.left, self.right], platforms)
-                for coin in coins:
-                    if self.player.rect.colliderect(coin.rect):
-                        if Health.current < Health.max:
-                            self.count += 0.1
-                            coins.remove(coin)
+                for banana in bananas:
+                    banana.update()
+                    if self.player.rect.colliderect(banana.rect) and banana.rect.y != 10:
+                            banana.top()
+                    shoot = pygame.key.get_pressed()[pygame.K_SPACE]
+                    if shoot and banana.rect.y == 10:
+                        banana.rect.y = self.player.rect.y
+                        #right shot
+                        if self.player.velX > 0:
+                            banana.rect.x = self.player.rect.x + 120
+                            banana.update_velX(5)
+                            break
+                        #left shot
+                        else:
+                            banana.rect.x = self.player.rect.x - 60
+                            banana.update_velX(-5)
+                            break
+                    if banana.rect.right > SCREENW:
+                        bananas.remove(banana)
+                        break
+                    if banana.rect.left < 0:
+                        bananas.remove(banana)
+                        break
 
 
                 if self.player.rect.colliderect(self.treasure.rect):

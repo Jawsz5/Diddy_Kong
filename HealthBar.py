@@ -5,6 +5,6 @@ class HealthBar:
         self.max = max
         self.current = current
         ratio = float(current/max)
-        pygame.draw.rect(screen, "red", (50, 50, 200, 20), 0, 10)
-        pygame.draw.rect(screen, "Green", (50, 50, 200*ratio, 20), 0 ,10)
+        pygame.draw.rect(screen, "red", (10, 70, 200, 20), 0, 10)
+        pygame.draw.rect(screen, "Green", (10, 70, 200*ratio, 20), 0 ,10)
 
