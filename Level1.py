@@ -32,6 +32,7 @@ class Level1(Level):
         self.won = False
         self.count = 1
         self.banana_count = 0
+        self.banana_shot = False
 
     def Platform(self):
         all_sprites_list = pygame.sprite.Group()
@@ -112,7 +113,6 @@ class Level1(Level):
                 # shooting
                 self.player.update([self.up, self.down, self.left, self.right], platforms)
                 for banana in bananas:
-                    banana.update()
                     if self.player.rect.colliderect(banana.rect) and banana.rect.y != 10:
                             b = Banana(20 + self.banana_count, 10, 50, 50)
                             bananas2.add(b)
@@ -120,28 +120,27 @@ class Level1(Level):
                             self.banana_count += 25
 
                 shoot = pygame.key.get_pressed()[pygame.K_SPACE]
-                t = True
+                if shoot:
+                    self.banana_shot = True
                 for banana in bananas2:
                     banana.update()
-                    if shoot and banana.rect.y == 10 and t:
+                    if shoot and banana.rect.y == 10 and self.banana_shot:
                         banana.rect.y = self.player.rect.y
                         # right shot
                         if self.player.velX > 0:
                             banana.rect.x = self.player.rect.x
                             banana.update_velX(5)
-                            break
                         # left shot
                         else:
                             banana.rect.x = self.player.rect.x
                             banana.update_velX(-5)
-                            break
                     if banana.rect.right > SCREENW:
                         bananas2.remove(banana)
                         break
                     if banana.rect.left < 0:
                         bananas2.remove(banana)
                         break
-                    t = False
+                    self.banana_shot = False
 
 
                 if self.player.rect.colliderect(self.treasure.rect):
