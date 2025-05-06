@@ -33,6 +33,7 @@ class Level1(Level):
         self.count = 1
         self.banana_count = 0
         self.banana_shot = False
+        self.prev_velo = 0
 
     def Platform(self):
         all_sprites_list = pygame.sprite.Group()
@@ -131,9 +132,18 @@ class Level1(Level):
                             banana.rect.x = self.player.rect.x
                             banana.update_velX(5)
                         # left shot
+                        elif self.player.velX < 0:
+                                banana.rect.x = self.player.rect.x
+                                banana.update_velX(-5)
+                        #stationary left
+                        elif self.prev_velo > 0:
+                            banana.rect.x = self.player.rect.x
+                            banana.update_velX(5)
+                        #stationary right
                         else:
                             banana.rect.x = self.player.rect.x
                             banana.update_velX(-5)
+
                     if banana.rect.right > SCREENW:
                         bananas2.remove(banana)
                         break
@@ -149,6 +159,9 @@ class Level1(Level):
                     self.screen.blit(self.image2, (600, -20))
                     self.won = True
                     self.screen_state = False
+
+                if self.player.velX != 0:
+                    self.prev_velo = self.player.velX
 
             else:
                 if self.won:
