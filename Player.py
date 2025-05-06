@@ -97,7 +97,7 @@ class Player(pygame.sprite.Sprite):
         for platform in collided_platforms:
             # Moving right: adjust right side of player
 
-            #TODO ask mourya what this is for. IDR putting it in
+            # TODO ask mourya what this is for. IDR putting it in
             '''
             if self.rect.x > old_x:
                 self.rect.right = platform.rect.left
