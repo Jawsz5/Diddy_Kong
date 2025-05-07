@@ -106,7 +106,7 @@ class Level1(Level):
                 # Draw the player
                 self.screen.blit(self.player.get_surface(), self.player.get_rect())
 
-                Health = HealthBar(self.screen, 100, 100*self.count)
+                Health = HealthBar(self.screen, 100, 75*self.count)
 
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
@@ -181,6 +181,12 @@ class Level1(Level):
                     if self.screen_state:
                         self.player = Player(SCREENW, SCREENH, 150, 700)
                         break
+
+
+
+
+
+
 
 
 

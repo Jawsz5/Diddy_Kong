@@ -6,6 +6,7 @@ from Player import Player
 from HealthBar import HealthBar
 from Level1 import Level1
 from Helper import jungle_conversion
+from Banana import Banana
 SCREENW = 800
 SCREENH = 800
 
@@ -21,7 +22,7 @@ class Level3(Level1):
         self.image_end = pygame.transform.scale(self.image_end, (SCREENW, SCREENH))
 
 
-    def add_sprite(self):
+    def Platform(self):
 
         all_sprites_list = pygame.sprite.Group()
         jungle = pygame.image.load("Textures/jungle.png")
@@ -50,58 +51,20 @@ class Level3(Level1):
 
         return all_sprites_list
 
+    def Bananas(self):
+        all_sprites_list = pygame.sprite.Group()
 
-    def run(self):
-        # Create the platforms group once outside the loop
-        platforms = self.add_sprite()
+        Banana1 = Banana(520, 280, 50, 50)
+        all_sprites_list.add(Banana1)
 
-        running = True
-        while running:
-            # Draw the background
-            if self.screen_state:
-                self.won = False
-                self.screen.blit(self.image, (0, 0))
-                # Draw platforms
-                platforms.draw(self.screen)
-                self.screen.blit(self.treasure.get_surface(), self.treasure.get_rect())
-                self.screen.blit(self.image1, (620, -20))
+        Banana2 = Banana(220, 80, 50, 50)
+        all_sprites_list.add(Banana2)
 
-                # Draw the player
-                self.screen.blit(self.player.get_surface(), self.player.get_rect())
+        Banana3 = Banana(120, 570, 50, 50)
+        all_sprites_list.add(Banana3)
 
-                HealthBar(self.screen)
+        Banana4 = Banana(320, 380, 50, 50)
+        all_sprites_list.add(Banana4)
 
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        running = False
-                # Update player with keys and platform group
-                self.player.update([self.up, self.down, self.left, self.right], platforms)
-                if self.player.rect.colliderect(self.treasure.rect):
-                    self.screen.blit(self.image2, (600, -20))
-                    self.won = True
-                    self.screen_state = False
-
-            else:
-                if self.won:
-                    time.sleep(1)
-                    self.won = False
-                self.screen.blit(self.image_end, (0, 0))
-                self.Game_Over_Buttons.draw()
-                self.Game_Over_Buttons1.draw()
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        running = False
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        if pygame.mouse.get_pressed()[0] and self.Game_Over_Buttons.rect.collidepoint(
-                                pygame.mouse.get_pos()):
-                            self.screen_state = True
-                        if pygame.mouse.get_pressed()[0] and self.Game_Over_Buttons1.rect.collidepoint(
-                                pygame.mouse.get_pos()):
-                            running = False
-                    if self.screen_state:
-                        self.player = Player(SCREENW, SCREENH, 150, 700)
-                        break
-
-            pygame.display.flip()
-            self.clock.tick(90)
+        return all_sprites_list
 
