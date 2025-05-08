@@ -13,7 +13,7 @@ class Level:
         self.down = down
         self.left = left
         self.right = right
-        self.player = Player(SCREENW, SCREENH, 150, 700)
+        self.player = Player(SCREENW, SCREENH, 0, 700)
         self.treasure = Treasure(700,50)
 
 

@@ -15,6 +15,9 @@ class Enemy(pygame.sprite.Sprite):
        self.rect.y = y
        self.velX = 0
        self.turn = 0
+       self.switch = True
+       self.rate = 15
+       self.r_final = 10
        self.animations = [
            self.image,
            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/jump.png"), size), #These will never get called
@@ -35,10 +38,10 @@ class Enemy(pygame.sprite.Sprite):
        else:
            self.velX = 2
 
-       if self.rect.x > 800:
+       if self.rect.x > 400:
            self.turn = 1
 
-       if self.rect.x < 0:
+       if self.rect.x < 300:
            self.turn = 0
 
        self.rect.x += self.velX

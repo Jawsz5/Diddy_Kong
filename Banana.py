@@ -14,6 +14,9 @@ class Banana(pygame.sprite.Sprite):
         self.rect.y = y
         self.velX = 0
         self.velY = 0
+        self.switch = True
+        self.rate = 15
+        self.r_final = 10
         self.animations = [self.image, 0, 0,
         pygame.transform.scale(pygame.image.load("Bananas/banana1.png"), size),
         pygame.transform.scale(pygame.image.load("Bananas/banana2.png"), size),

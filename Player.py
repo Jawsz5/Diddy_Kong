@@ -35,7 +35,11 @@ class Player(pygame.sprite.Sprite):
         self.on_ground = True
         self.jump_count = 2  # Allow 2 jumps: initial jump + double jump
         self.prev_jump_pressed = False  # Tracks previous jump key state
-        self.double_jumped = False      # Flag for whether a double jump has been used
+        self.double_jumped = False
+        self.switch = True
+        self.rate = 15
+        self.r_final = 10
+        # Flag for whether a double jump has been used
         self.animations = [
             self.image,
             pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/jump.png"), size),

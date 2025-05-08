@@ -23,39 +23,25 @@ switch = True
 rate = 15
 r_final = 10
 def animate(sprite, vel_x, vel_y, path):
-    #the rate of the animation should be handled outside of this function. Set a rate and subtract an integer, Once r < i, call this function. Reset r
-    global switch, rate
     # stationary
     if vel_y == 0 and vel_x == 0:
         sprite.image = path[0]
     # jumping up
-    if vel_y > 0:
+    elif vel_y > 0:
         sprite.image = path[1]
     # falling
-    if vel_y < 0:
+    elif vel_y < 0:
         sprite.image = path[2]
-    rate -= 1
-    if rate <= 1:
-        p = True  # boolean that ensures only one animation is used per frame
+
+    sprite.rate -= 1
+    if sprite.rate <= 1:
         # moving right
         if vel_x > 0 and vel_y == 0:
-            if not switch and p:
-                sprite.image = path[3]
-                switch = True
-                p = False
-            if switch and p:
-                sprite.image = path[4]
-                switch = False
-                p = False
-        # moving left - repeat of right, but with different animations
-        p = True
-        if vel_x < 0 and vel_y == 0:
-            if not switch and p:
-                sprite.image = path[5]
-                switch = True
-                p = False
-            if switch and p:
-                sprite.image = path[6]
-                switch = False
-                p = False
-        rate = r_final
+            sprite.image = path[3] if not sprite.switch else path[4]
+            sprite.switch = not sprite.switch
+        # moving left
+        elif vel_x < 0 and vel_y == 0:
+            sprite.image = path[5] if not sprite.switch else path[6]
+            sprite.switch = not sprite.switch
+
+        sprite.rate = sprite.r_final
