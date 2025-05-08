@@ -84,10 +84,15 @@ class Level1(Level):
     def Enemy(self):
         all_sprites_list = pygame.sprite.Group()
 
-        Enemy1 = Enemy(320, 380, 100, 100)
+        Enemy1 = Enemy(320, 380, 100, 100, self.Platform())
         all_sprites_list.add(Enemy1)
-        return all_sprites_list
 
+        Enemy2 = Enemy(220, 80, 100, 100, self.Platform())
+        all_sprites_list.add(Enemy2)
+
+        Enemy3 = Enemy(520, 280, 100, 100, self.Platform())
+        all_sprites_list.add(Enemy3)
+        return all_sprites_list
 
 
 
