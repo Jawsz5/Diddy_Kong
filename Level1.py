@@ -9,6 +9,7 @@ from Level import Level
 from Treasure import Treasure
 from Helper import jungle_conversion
 from Banana import Banana
+from Enemies import Enemy
 SCREENW = 800
 SCREENH = 800
 
@@ -79,6 +80,17 @@ class Level1(Level):
 
         return all_sprites_list
 
+    def Enemy(self):
+        all_sprites_list = pygame.sprite.Group()
+
+        Enemy1 = Enemy(200, 300, 100, 100)
+        all_sprites_list.add(Enemy1)
+        return all_sprites_list
+
+
+
+
+
     def Bananas2(self):
         all_sprites_list = pygame.sprite.Group()
         return all_sprites_list
@@ -89,6 +101,7 @@ class Level1(Level):
         platforms = self.Platform()
         bananas = self.Bananas()
         bananas2 = self.Bananas2()
+        Enemy = self.Enemy()
 
         running = True
         while running:
@@ -100,6 +113,7 @@ class Level1(Level):
                 platforms.draw(self.screen)
                 bananas.draw(self.screen)
                 bananas2.draw(self.screen)
+                Enemy.draw(self.screen)
                 self.screen.blit(self.treasure.get_surface(), self.treasure.get_rect())
                 self.screen.blit(self.image1, (620, -20))
 
@@ -112,6 +126,9 @@ class Level1(Level):
                     if event.type == pygame.QUIT:
                         running = False
                 # shooting
+
+                for i in Enemy:
+                    i.update()
                 self.player.update([self.up, self.down, self.left, self.right], platforms)
                 for banana in bananas:
                     if self.player.rect.colliderect(banana.rect) and banana.rect.y != 10:
