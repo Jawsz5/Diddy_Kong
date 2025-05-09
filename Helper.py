@@ -1,4 +1,7 @@
 # platform hit-box conversions
+import pygame
+
+
 def jungle_conversion(coords):
     # X coordinates stay the same
     return coords[0] + 20 , coords[1] + 35, coords[2] - 20, coords[3] - 90
@@ -45,3 +48,8 @@ def animate(sprite, vel_x, vel_y, path):
             sprite.switch = not sprite.switch
 
         sprite.rate = sprite.r_final
+
+def shot(bullet, sprite2):
+    if pygame.sprite.spritecollide(bullet, sprite2, False):
+        bullet.kill()
+        sprite2.kill()

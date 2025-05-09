@@ -7,7 +7,7 @@ from Player import Player
 from HealthBar import HealthBar
 from Level import Level
 from Treasure import Treasure
-from Helper import jungle_conversion
+from Helper import jungle_conversion, shot
 from Banana import Banana
 from Enemies import Enemy
 SCREENW = 800
@@ -167,7 +167,10 @@ class Level1(Level):
                             banana.rect.x = self.player.rect.x
                             banana.update_velX(-5)
                     for platform, enemy in zip(platforms, Enemy):
-                        if banana.rect.colliderect(platform.rect) or banana.rect.colliderect(enemy.rect):
+                        if banana.rect.colliderect(enemy.rect):
+                            Enemy.remove(enemy)
+                            bananas2.remove(banana)
+                        if banana.rect.colliderect(platform.rect):
                             bananas2.remove(banana)
 
                     if banana.rect.right > SCREENW:
