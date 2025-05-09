@@ -152,11 +152,11 @@ class Level1(Level):
                         banana.rect.y = self.player.rect.y
                         # right shot
                         if self.player.velX > 0:
-                            banana.rect.x = self.player.rect.x
+                            banana.rect.x = self.player.rect.x + 15
                             banana.update_velX(5)
                         # left shot
                         elif self.player.velX < 0:
-                                banana.rect.x = self.player.rect.x
+                                banana.rect.x = self.player.rect.x - 15
                                 banana.update_velX(-5)
                         #stationary left
                         elif self.prev_velo > 0:
@@ -166,6 +166,9 @@ class Level1(Level):
                         else:
                             banana.rect.x = self.player.rect.x
                             banana.update_velX(-5)
+                    for platform, enemy in zip(platforms, Enemy):
+                        if banana.rect.colliderect(platform.rect) or banana.rect.colliderect(enemy.rect):
+                            bananas2.remove(banana)
 
                     if banana.rect.right > SCREENW:
                         bananas2.remove(banana)

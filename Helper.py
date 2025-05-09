@@ -1,7 +1,7 @@
 # platform hit-box conversions
 def jungle_conversion(coords):
     # X coordinates stay the same
-    return coords[0] + 20 , coords[1] + 35, coords[2] - 20, coords[3] - 55
+    return coords[0] + 20 , coords[1] + 35, coords[2] - 20, coords[3] - 90
 
 
 #Movement animation
