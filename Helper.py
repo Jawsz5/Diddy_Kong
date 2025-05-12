@@ -49,7 +49,17 @@ def animate(sprite, vel_x, vel_y, path):
 
         sprite.rate = sprite.r_final
 
-def shot(bullet, sprite2):
-    if pygame.sprite.spritecollide(bullet, sprite2, False):
-        bullet.kill()
-        sprite2.kill()
+
+#pass in 2 sprite groups, first group is the one that "hits" the other. add a value for damage done. Select a value for type of aftermath (bounce, stationary, travel through), pass in health too. Death animation
+def shot(bullet_group, sprite_group):
+    for bullet in bullet_group:
+        for sprite in sprite_group:
+            if bullet.rect.colliderect(sprite.rect):
+                sprite.hp -= 30
+                bullet_group.remove(bullet)
+            if sprite.hp <= 0:
+                sprite_group.remove(sprite)
+
+def player_hit(player, object, v):
+    if player.rect.colliderect(object.rect):
+        player.hp -= v

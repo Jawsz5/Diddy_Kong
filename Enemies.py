@@ -25,6 +25,7 @@ class Enemy(pygame.sprite.Sprite):
             pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy_Moving_Left1.png"), size),
             pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy_Moving_Left2.png"), size),
         ]
+        self.hp = 40
 
         self.platform_bounds = self.get_platform_bounds(platforms)
 

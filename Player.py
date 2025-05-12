@@ -48,6 +48,7 @@ class Player(pygame.sprite.Sprite):
             pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/right2.png"), size),
             pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/left1.png"), size),
             pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/left2.png"), size)]
+        self.hp = 100
 
     def get_surface(self):
         return self.image

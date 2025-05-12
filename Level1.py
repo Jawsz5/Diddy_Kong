@@ -7,7 +7,7 @@ from Player import Player
 from HealthBar import HealthBar
 from Level import Level
 from Treasure import Treasure
-from Helper import jungle_conversion, shot
+from Helper import jungle_conversion, shot, player_hit
 from Banana import Banana
 from Enemies import Enemy
 SCREENW = 800
@@ -108,6 +108,7 @@ class Level1(Level):
         bananas = self.Bananas()
         bananas2 = self.Bananas2()
         Enemy = self.Enemy()
+        start_time = time.time()
 
         running = True
         while running:
@@ -126,7 +127,7 @@ class Level1(Level):
                 # Draw the player
                 self.screen.blit(self.player.get_surface(), self.player.get_rect())
 
-                Health = HealthBar(self.screen, 100, 75*self.count)
+                Health = HealthBar(self.screen, 100, 100*self.count)
 
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
@@ -166,12 +167,6 @@ class Level1(Level):
                         else:
                             banana.rect.x = self.player.rect.x
                             banana.update_velX(-5)
-                    for platform, enemy in zip(platforms, Enemy):
-                        if banana.rect.colliderect(enemy.rect):
-                            Enemy.remove(enemy)
-                            bananas2.remove(banana)
-                        if banana.rect.colliderect(platform.rect):
-                            bananas2.remove(banana)
 
                     if banana.rect.right > SCREENW:
                         bananas2.remove(banana)
@@ -181,6 +176,17 @@ class Level1(Level):
                         break
 
                     self.banana_shot = False
+
+                shot(bananas2, Enemy)
+                for enemy in Enemy:
+                    #player_hit(self.player, enemy, 5)
+                    if self.player.rect.colliderect(enemy):
+                        end_time = time.time()
+                        elapsed_time = end_time - start_time
+                        if elapsed_time > 2:
+                            self.player.hp -= 10
+                            start_time = time.time()
+                Health = HealthBar(self.screen, 100, self.player.hp * self.count)
 
                 if self.player.rect.colliderect(self.treasure.rect):
                     self.screen.blit(self.image2, (600, -20))
