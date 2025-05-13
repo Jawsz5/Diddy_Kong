@@ -7,6 +7,7 @@ from HealthBar import HealthBar
 from Level1 import Level1
 from Helper import jungle_conversion
 from Banana import Banana
+from Enemies import Enemy
 SCREENW = 800
 SCREENH = 800
 
@@ -66,5 +67,27 @@ class Level3(Level1):
         Banana4 = Banana(320, 420, 50, 50)
         all_sprites_list.add(Banana4)
 
+        return all_sprites_list
+
+    def Enemy(self):
+        animations = [
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy3/Enemy3_Stationary.png"), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/jump.png"), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/fall.png"), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy3/Enemy3_Move_Right1.png"), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy3/Enemy3_Move_Right2.png"), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy3/Enemy3_Move_Left1.png"), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy3/Enemy3_Move_Left2.png"), (100,100)),
+        ]
+        all_sprites_list = pygame.sprite.Group()
+
+        Enemy1 = Enemy(320, 380, 100, 100, self.Platform(), animations)
+        all_sprites_list.add(Enemy1)
+
+        Enemy2 = Enemy(220, 80, 100, 100, self.Platform(), animations)
+        all_sprites_list.add(Enemy2)
+
+        Enemy3 = Enemy(520, 280, 100, 100, self.Platform(), animations)
+        all_sprites_list.add(Enemy3)
         return all_sprites_list
 

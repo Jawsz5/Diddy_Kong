@@ -5,26 +5,17 @@ WIDTH     =  50
 HEIGHT    =  50
 
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self, x, y, w, h, platforms):
+    def __init__(self, x, y, w, h, platforms, animations):
         super(Enemy, self).__init__()
-        self.image = pygame.image.load("Characters/Enemy/Enemy1/Enemy_Stationary.png")
+        self.image = animations[0]
         size = (w, h)
-        self.image = pygame.transform.scale(self.image, size)
         self.rect = self.image.get_rect(topleft=(x, y))
         self.velX = 0
         self.turn = 0
         self.switch = True
         self.rate = 15
         self.r_final = 10
-        self.animations = [
-            self.image,
-            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/jump.png"), size),
-            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/fall.png"), size),
-            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Right1.png"), size),
-            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Right2.png"), size),
-            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Left1.png"), size),
-            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Left2.png"), size),
-        ]
+        self.animations = animations
         self.hp = 40
 
         self.platform_bounds = self.get_platform_bounds(platforms)

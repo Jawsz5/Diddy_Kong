@@ -82,15 +82,24 @@ class Level1(Level):
         return all_sprites_list
 
     def Enemy(self):
+        animations = [
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Stationary.png"), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/jump.png"), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/fall.png"), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Right1.png"), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Right2.png"), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Left1.png"), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Left2.png"), (100,100)),
+        ]
         all_sprites_list = pygame.sprite.Group()
 
-        Enemy1 = Enemy(320, 380, 100, 100, self.Platform())
+        Enemy1 = Enemy(320, 380, 100, 100, self.Platform(), animations)
         all_sprites_list.add(Enemy1)
 
-        Enemy2 = Enemy(220, 80, 100, 100, self.Platform())
+        Enemy2 = Enemy(220, 80, 100, 100, self.Platform(), animations)
         all_sprites_list.add(Enemy2)
 
-        Enemy3 = Enemy(520, 280, 100, 100, self.Platform())
+        Enemy3 = Enemy(520, 280, 100, 100, self.Platform(), animations)
         all_sprites_list.add(Enemy3)
         return all_sprites_list
 
