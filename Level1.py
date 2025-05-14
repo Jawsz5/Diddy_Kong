@@ -83,13 +83,13 @@ class Level1(Level):
 
     def Enemy(self):
         animations = [
-            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Stationary.png"), (100,100)),
-            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/jump.png"), (100,100)),
-            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/fall.png"), (100,100)),
-            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Right1.png"), (100,100)),
-            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Right2.png"), (100,100)),
-            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Left1.png"), (100,100)),
-            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Left2.png"), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Stationary.png").convert_alpha(), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/jump.png").convert_alpha(), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/fall.png").convert_alpha(), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Right1.png").convert_alpha(), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Right2.png").convert_alpha(), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Left1.png").convert_alpha(), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Left2.png").convert_alpha(), (100,100)),
         ]
         all_sprites_list = pygame.sprite.Group()
 
