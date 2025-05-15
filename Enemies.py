@@ -17,8 +17,11 @@ class Enemy(pygame.sprite.Sprite):
         self.r_final = 10
         self.animations = animations
         self.hp = 30
-
         self.platform_bounds = self.get_platform_bounds(platforms)
+
+
+
+
 
     def get_platform_bounds(self, platforms):
         for platform in platforms:

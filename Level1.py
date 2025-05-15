@@ -36,6 +36,8 @@ class Level1(Level):
         self.banana_shot = False
         self.prev_velo = 0
 
+
+
     def Platform(self):
         all_sprites_list = pygame.sprite.Group()
         jungle = pygame.image.load("Textures/jungle.png")
@@ -83,18 +85,38 @@ class Level1(Level):
 
     def Enemy(self):
         animations = [
-            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Stationary.png").convert_alpha(), (100,100)),
-            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/jump.png").convert_alpha(), (100,100)),
-            pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/fall.png").convert_alpha(), (100,100)),
-            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Right1.png").convert_alpha(), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Stationary.png"), (100,100)),
+            0,
+            0,
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Right1.png"), (100,100)),
             pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Right2.png").convert_alpha(), (100,100)),
             pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Left1.png").convert_alpha(), (100,100)),
             pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Moving_Left2.png").convert_alpha(), (100,100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Attack_Left1.png").convert_alpha(),
+                                   (100, 100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Attack_Left2.png").convert_alpha(),
+                                   (100, 100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Attack_Right1.png").convert_alpha(),
+                                   (100, 100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/Enemy1/Enemy_Attack_Right2.png").convert_alpha(),
+                                   (100, 100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/DeadEnemy/DeadEnemy_Move_Left1.png").convert_alpha(),
+                                   (100, 100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/DeadEnemy/DeadEnemy_Move_Left2.png").convert_alpha(),
+                                   (100, 100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/DeadEnemy/DeadEnemy_Move_Right1.png").convert_alpha(),
+                                   (100, 100)),
+            pygame.transform.scale(pygame.image.load("Characters/Enemy/DeadEnemy/DeadEnemy_Move_Right2.png").convert_alpha(),
+                                   (100, 100)),
+
         ]
+
         all_sprites_list = pygame.sprite.Group()
 
         Enemy1 = Enemy(320, 380, 100, 100, self.Platform(), animations)
+
         all_sprites_list.add(Enemy1)
+
 
         Enemy2 = Enemy(220, 80, 100, 100, self.Platform(), animations)
         all_sprites_list.add(Enemy2)
@@ -193,12 +215,13 @@ class Level1(Level):
                         end_time = time.time()
                         elapsed_time = end_time - start_time
                         if elapsed_time > 2:
-                            self.player.hp -= 10
+                            self.player.hp -= 20
                             start_time = time.time()
                 Health = HealthBar(self.screen, 100, self.player.hp * self.count)
 
-                if self.player.rect.colliderect(self.treasure.rect):
-                    self.screen.blit(self.image2, (600, -20))
+                if self.player.rect.colliderect(self.treasure.rect) or self.player.hp <= 0:
+                    if self.player.hp > 0:
+                        self.screen.blit(self.image2, (600, -20))
                     self.won = True
                     self.screen_state = False
 
