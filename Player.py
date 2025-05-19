@@ -1,3 +1,5 @@
+import time
+
 import pygame
 from Helper import animate
 from HealthBar import HealthBar
@@ -49,12 +51,39 @@ class Player(pygame.sprite.Sprite):
             pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/left1.png"), size),
             pygame.transform.scale(pygame.image.load("Characters/DIDDY_KONG/left2.png"), size)]
         self.hp = 100
+        self.start_time = time.time()
+        self.bounce_time = time.time()
+        self.bounce_end = time.time()
+        self.t = False
 
     def get_surface(self):
         return self.image
 
     def get_rect(self):
         return self.rect
+
+    def player_hit(self, object, v):
+        end_time = time.time()
+        elapsed_time = end_time - self.start_time
+        if self.rect.colliderect(object.rect):
+            if elapsed_time > 2:
+                self.hp -= v
+                self.start_time = time.time()
+
+    def bounce(self, Sprite_group):
+        for sprite in Sprite_group.copy():
+            if self.velY > 5 and self.rect.colliderect(sprite.rect):
+                self.velX = 0
+                self.velY *= -1
+                self.bounce_time = time.time()
+                self.jump_count = 2
+                self.on_ground = False
+                Sprite_group.remove(sprite)
+                self.t = True
+                return 1
+        if self.t and time.time() - self.bounce_time > 0.1:
+            self.t = False
+        return 0
 
     def update(self, pressed_keys, platforms):
         # --- Vertical Movement and Collision ---

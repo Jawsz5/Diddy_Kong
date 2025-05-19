@@ -209,6 +209,14 @@ class Level1(Level):
                     self.banana_shot = False
 
                 shot(bananas2, Enemy)
+                t = self.player.bounce(Enemy)
+                for enemy in Enemy:
+                    if t == 1:
+                        self.player.player_hit(enemy, 0)
+                    else:
+                        self.player.player_hit(enemy, 10)
+                Health = HealthBar(self.screen, 100, self.player.hp * self.count)
+                '''
                 for enemy in Enemy:
                     #player_hit(self.player, enemy, 5)
                     if self.player.rect.colliderect(enemy):
@@ -218,7 +226,7 @@ class Level1(Level):
                             self.player.hp -= 20
                             start_time = time.time()
                 Health = HealthBar(self.screen, 100, self.player.hp * self.count)
-
+                '''
                 if self.player.rect.colliderect(self.treasure.rect) or self.player.hp <= 0:
                     if self.player.hp > 0:
                         self.screen.blit(self.image2, (600, -20))
